@@ -1,0 +1,25 @@
+build_settings:
+    mysql:
+        host: "localhost"
+        user: "root"
+        pass: "root"
+
+setup:
+    mysql:
+        - "DROP DATABASE IF EXISTS printcenter_tests;"
+        - "CREATE DATABASE printcenter_tests;"
+        - "GRANT ALL PRIVILEGES ON printcenter_tests.* TO printcenter_tests@'localhost' IDENTIFIED BY 'printcenter_tests';"
+
+test:
+    php_unit:
+        config:
+            - "phpunit.xml"
+        directory:
+            - "tests/"
+        run_from: "unit-tests/"
+    php_mess_detector:
+        allow_failures: true
+
+complete:
+    mysql:
+        - "DROP DATABASE IF EXISTS printcenter_tests;"
