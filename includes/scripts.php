@@ -21,6 +21,8 @@ if( ! defined( 'ABSPATH' ) ) {
  * @return      void
  */
 function printcenter_admin_scripts( $hook ) {
+    wp_enqueue_style( 'printcenter-font', PRINTCENTER_URL . 'assets/css/font.css', array(), PRINTCENTER_VER );
+
     if( ! apply_filters( 'printcenter_load_admin_scripts', printcenter_is_admin_page( $hook ), $hook ) ) {
         return;
     }
