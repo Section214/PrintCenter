@@ -95,11 +95,13 @@ if( ! class_exists( 'PrintCenter' ) ) {
 
             require_once PRINTCENTER_DIR . 'includes/scripts.php';
             require_once PRINTCENTER_DIR . 'includes/functions.php';
+            require_once PRINTCENTER_DIR . 'includes/libraries/Array2XML.php';
 
             if( is_admin() ) {
                 require_once PRINTCENTER_DIR . 'includes/admin/actions.php';
                 require_once PRINTCENTER_DIR . 'includes/admin/pages.php';
-                require_once PRINTCENTER_DIR . 'includes/admin/settings/display.php';
+				//require_once PRINTCENTER_DIR . 'includes/admin/settings/display.php';
+                require_once PRINTCENTER_DIR . 'includes/ssitest.php';
             }
 
             if( ! class_exists( 'WP_GitHub_Updater' ) ) {

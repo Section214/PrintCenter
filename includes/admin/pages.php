@@ -23,7 +23,7 @@ if( ! defined( 'ABSPATH' ) ) {
 function printcenter_add_settings_pages() {
     global $printcenter_settings_page;
 
-    $printcenter_settings_page = add_menu_page( __( 'PrintCenter Settings', 'printcenter' ), __( 'PrintCenter', 'printcenter' ), 'manage_options', 'printcenter-settings', 'printcenter_render_settings_page' );
+    $printcenter_settings_page = add_menu_page( __( 'SSI Test', 'printcenter' ), __( 'SSI Test', 'printcenter' ), 'manage_options', 'printcenter-settings', 'printcenter_render_settings_page' );
 }
 add_action( 'admin_menu', 'printcenter_add_settings_pages', 10 );
 
