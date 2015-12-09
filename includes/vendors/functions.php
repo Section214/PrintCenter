@@ -143,8 +143,8 @@ function printcenter_get_commission_percent( $product_id = 0, $vendor_id = 0 ) {
 		$vendor_data = get_option( $woo_vendors->token . '_' . $vendor_id );
 
 		if( $vendor_data['commission'] && strlen( $vendor_data['commission'] ) > 0 && $vendor_data['commission'] != '' ) {
-        	return $vendor_data['commission'];
-        }
+			return $vendor_data['commission'];
+		}
 	}
 
 	// If no commission percentages are specified then default to base commission or fallback of 50%
@@ -343,12 +343,12 @@ function printcenter_is_vendor_admin( $vendor_id = 0, $user_id = 0 ) {
 		$vendor = get_vendor( $vendor_id );
 
 		if( isset( $vendor->admins ) ) {
-            foreach( $vendor->admins as $admin ) {
-                if( $admin->ID == $user_id ) {
-                    $is_vendor_admin = true;
-                }
-            }
-        }
+			foreach( $vendor->admins as $admin ) {
+				if( $admin->ID == $user_id ) {
+					$is_vendor_admin = true;
+				}
+			}
+		}
 	}
 
 	return apply_filters( 'printcenter_is_vendor_admin', $is_vendor_admin, $vendor_id, $user_id );
@@ -395,11 +395,11 @@ function printcenter_vendor_access() {
 	$is_vendor = printcenter_is_vendor();
 	$vendor_access = false;
 
-    if( $is_vendor && ! current_user_can( 'manage_woocommerce' ) ) {
-    	$vendor_access = true;
-    }
+	if( $is_vendor && ! current_user_can( 'manage_woocommerce' ) ) {
+		$vendor_access = true;
+	}
 
-    return apply_filters( 'printcenter_vendor_access', $vendor_access );
+	return apply_filters( 'printcenter_vendor_access', $vendor_access );
 }
 
 

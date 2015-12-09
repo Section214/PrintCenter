@@ -31,49 +31,49 @@ function printcenter_product_vendors_report_overview() {
 				'compare' => '='
 			)
 		),
-		'posts_per_page'  => -1
+		'posts_per_page' => -1
 	);
 
 	if( version_compare( WC()->version, 2.2, ">=" ) ) {
-    	$args['post_status'] = array_keys( wc_get_order_statuses() );
-    }
+		$args['post_status'] = array_keys( wc_get_order_statuses() );
+	}
 
-	$orders = get_posts( $args );
-
+	$orders      = get_posts( $args );
 	$total_sales = $total_orders = $total_earnings = $total_vendor_earnings = 0;
 
 	foreach( $orders as $order ) {
-		$order_obj = new WC_Order( $order->ID );
-	    $items = $order_obj->get_items( 'line_item' );
-	    $product_vendor_earnings = 0;
+		$order_obj               = new WC_Order( $order->ID );
+		$items                   = $order_obj->get_items( 'line_item' );
+		$product_vendor_earnings = 0;
 
-	    foreach( $items as $item_id => $item ) {
-	        $product_id = $order_obj->get_item_meta( $item_id, '_product_id', true );
-	        $line_total = $order_obj->get_item_meta( $item_id, '_line_total', true );
-	        if( $product_id && $line_total ) {
-	        	$product_vendors = printcenter_get_product_vendors( $product_id );
+		foreach( $items as $item_id => $item ) {
+			$product_id = $order_obj->get_item_meta( $item_id, '_product_id', true );
+			$line_total = $order_obj->get_item_meta( $item_id, '_line_total', true );
 
-	            if( $product_vendors ) {
-	            	$total_sales += $line_total;
+			if( $product_id && $line_total ) {
+				$product_vendors = printcenter_get_product_vendors( $product_id );
 
-	            	foreach( $product_vendors as $vendor ) {
-	            		$comm_percent = printcenter_get_commission_percent( $product_id, $vendor->ID );
+				if( $product_vendors ) {
+					$total_sales += $line_total;
 
-	            		if( $comm_percent && $comm_percent > 0 ) {
-	                        $comm_amount = (int) $line_total * ( $comm_percent / 100 );
-	                        $product_vendor_earnings += $comm_amount;
-	                        $total_vendor_earnings += $comm_amount;
-	                    }
-	            	}
+					foreach( $product_vendors as $vendor ) {
+						$comm_percent = printcenter_get_commission_percent( $product_id, $vendor->ID );
 
-	            	$earnings = ( $line_total - $total_vendor_earnings );
-	            	$total_earnings += $earnings;
-	            }
-	        }
-	    }
-	    ++$total_orders;
+						if( $comm_percent && $comm_percent > 0 ) {
+							$comm_amount              = (int) $line_total * ( $comm_percent / 100 );
+							$product_vendor_earnings += $comm_amount;
+							$total_vendor_earnings   += $comm_amount;
+						}
+					}
+
+					$earnings        = ( $line_total - $total_vendor_earnings );
+					$total_earnings += $earnings;
+				}
+			}
+		}
+
+		++$total_orders;
 	}
-
 	?>
 	<div id="poststuff" class="woocommerce-reports-wrap">
 		<div class="woocommerce-reports-sidebar">
@@ -121,25 +121,23 @@ function printcenter_product_vendors_report_overview() {
 	<?php
 
 	$chart_data = array();
-
 	$start_date = strtotime( date('Ymd', strtotime( date('Ym', current_time('timestamp') ) . '01' ) ) );
-	$end_date = strtotime( date('Ymd', current_time( 'timestamp' ) ) );
+	$end_date   = strtotime( date('Ymd', current_time( 'timestamp' ) ) );
 
 	for( $date = $start_date; $date <= $end_date; $date = strtotime( '+1 day', $date ) ) {
-
-		$year = date( 'Y', $date );
-		$month = date( 'n', $date );
-		$day = date( 'j', $date );
+		$year                  = date( 'Y', $date );
+		$month                 = date( 'n', $date );
+		$day                   = date( 'j', $date );
 		$total_vendor_earnings = $total_earnings = $order_count = $day_total_vendors = $day_total = 0;
 
 		$args = array(
-			'post_type'         => 'shop_order',
-			'posts_per_page'    => -1,
-			'meta_query'        => array(
+			'post_type'      => 'shop_order',
+			'posts_per_page' => -1,
+			'meta_query'     => array(
 				array(
-					'key'       => '_commissions_processed',
-					'value'     => 'yes',
-					'compare'   => '='
+					'key'     => '_commissions_processed',
+					'value'   => 'yes',
+					'compare' => '='
 				)
 			),
 			'year'     => $year,
@@ -150,8 +148,8 @@ function printcenter_product_vendors_report_overview() {
 		);
 
 		if( version_compare( WC()->version, 2.2, ">=" ) ) {
-	    	$args['post_status'] = array_keys( wc_get_order_statuses() );
-	    }
+			$args['post_status'] = array_keys( wc_get_order_statuses() );
+		}
 
 		$qry = new WP_Query( $args );
 
@@ -164,33 +162,34 @@ function printcenter_product_vendors_report_overview() {
 				$items = $order_obj->get_items( 'line_item' );
 
 				foreach( $items as $item_id => $item ) {
-			        $product_id = $order_obj->get_item_meta( $item_id, '_product_id', true );
-			        $line_total = $order_obj->get_item_meta( $item_id, '_line_total', true );
+					$product_id = $order_obj->get_item_meta( $item_id, '_product_id', true );
+					$line_total = $order_obj->get_item_meta( $item_id, '_line_total', true );
 
-			        if( $product_id && $line_total ) {
-			        	$product_vendors = printcenter_get_product_vendors( $product_id );
+					if( $product_id && $line_total ) {
+						$product_vendors = printcenter_get_product_vendors( $product_id );
 
-			            if( $product_vendors ) {
-			            	foreach( $product_vendors as $vendor ) {
-			            		$comm_percent = printcenter_get_commission_percent( $product_id, $vendor->ID );
+						if( $product_vendors ) {
+							foreach( $product_vendors as $vendor ) {
+								$comm_percent = printcenter_get_commission_percent( $product_id, $vendor->ID );
 
-			            		if( $comm_percent && $comm_percent > 0 ) {
-			                        $comm_amount = (int) $line_total * ( $comm_percent / 100 );
-			                        $total_vendor_earnings += $comm_amount;
-			                    }
-			            	}
+								if( $comm_percent && $comm_percent > 0 ) {
+									$comm_amount            = (int) $line_total * ( $comm_percent / 100 );
+									$total_vendor_earnings += $comm_amount;
+								}
+							}
 
-			            	$earnings = ( $line_total - $total_vendor_earnings );
-	            			$total_earnings += $earnings;
-			            }
-			        }
-			    }
+							$earnings        = ( $line_total - $total_vendor_earnings );
+							$total_earnings += $earnings;
+						}
+					}
+				}
 
-			    $day_total += $total_earnings;
+				$day_total         += $total_earnings;
 				$day_total_vendors += $total_vendor_earnings;
 				++$order_count;
 			}
 		}
+
 		wp_reset_postdata();
 
 		$chart_data[ __( 'Total earned', 'printcenter' ) ][] = array(
@@ -274,6 +273,7 @@ function printcenter_product_vendors_report_overview() {
 	<?php
 }
 
+
 /**
  * Sales report for each vendor
  *
@@ -287,8 +287,8 @@ function printcenter_product_vendors_report_vendor_sales() {
 
 	if( isset( $_POST['vendor'] ) && ! empty( $_POST['vendor'] ) ) {
 		$vendor_id = $_POST['vendor'];
-		$vendor = printcenter_get_vendor( $vendor_id );
-		$products = printcenter_get_vendor_products( $vendor_id );
+		$vendor    = printcenter_get_vendor( $vendor_id );
+		$products  = printcenter_get_vendor_products( $vendor_id );
 
 		foreach( $products as $product ) {
 			$chosen_product_ids[] = $product->ID;
@@ -309,45 +309,39 @@ function printcenter_product_vendors_report_vendor_sales() {
 
 				// Ajax Chosen Vendor Selectors
 				jQuery('select.ajax_chosen_select_vendor').ajaxChosen({
-				    method: 		'GET',
-				    url: 			'<?php echo admin_url( "admin-ajax.php" ); ?>',
-				    dataType: 		'json',
-				    afterTypeDelay: 100,
-				    minTermLength: 	1,
-				    data:		{
-				    	action: 	'printcenter_json_search_vendors',
+					method: 		'GET',
+					url: 			'<?php echo admin_url( "admin-ajax.php" ); ?>',
+					dataType: 		'json',
+					afterTypeDelay: 100,
+					minTermLength: 	1,
+					data:		{
+						action: 	'printcenter_json_search_vendors',
 						security: 	'<?php echo wp_create_nonce( "search-vendors" ); ?>'
-				    }
+					}
 				}, function (data) {
-
 					var terms = {};
 
-				    jQuery.each(data, function (i, val) {
-				        terms[i] = val;
-				    });
+					jQuery.each(data, function (i, val) {
+						terms[i] = val;
+					});
 
-				    return terms;
+					return terms;
 				});
-
 			});
 		</script>
 	</form>
 	<?php
-
 	if( $chosen_product_ids && is_array( $chosen_product_ids ) ) {
-		$start_date = date( 'Ym', strtotime( '-12 MONTHS', current_time('timestamp') ) ) . '01';
-		$end_date 	= date( 'Ymd', current_time( 'timestamp' ) );
-
-		$max_sales = $max_totals = 0;
-		$product_sales = $product_totals = array();
-
-		// Get titles and ID's related to product
+		$start_date            = date( 'Ym', strtotime( '-12 MONTHS', current_time('timestamp') ) ) . '01';
+		$end_date              = date( 'Ymd', current_time( 'timestamp' ) );
+		$max_sales             = $max_totals = 0;
+		$product_sales         = $product_totals = array();
 		$chosen_product_titles = array();
-		$children_ids = array();
+		$children_ids          = array();
 
 		foreach( $chosen_product_ids as $product_id ) {
-			$children = (array) get_posts( 'post_parent=' . $product_id . '&fields=ids&post_status=any&numberposts=-1' );
-			$children_ids = $children_ids + $children;
+			$children                = (array) get_posts( 'post_parent=' . $product_id . '&fields=ids&post_status=any&numberposts=-1' );
+			$children_ids            = $children_ids + $children;
 			$chosen_product_titles[] = get_the_title( $product_id );
 		}
 
@@ -372,9 +366,8 @@ function printcenter_product_vendors_report_vendor_sales() {
 				GROUP BY order_items.order_id
 				ORDER BY posts.post_date ASC
 			" ), array_merge( $chosen_product_ids, $children_ids ) );
-
-	    } else {
-	    	$order_items = apply_filters( 'woocommerce_reports_product_sales_order_items', $wpdb->get_results( "
+		} else {
+			$order_items = apply_filters( 'woocommerce_reports_product_sales_order_items', $wpdb->get_results( "
 				SELECT order_item_meta_2.meta_value as product_id, posts.post_date, SUM( order_item_meta.meta_value ) as item_quantity, SUM( order_item_meta_3.meta_value ) as line_total
 				FROM {$wpdb->prefix}woocommerce_order_items as order_items
 
@@ -398,7 +391,7 @@ function printcenter_product_vendors_report_vendor_sales() {
 				GROUP BY order_items.order_id
 				ORDER BY posts.post_date ASC
 			" ), array_merge( $chosen_product_ids, $children_ids ) );
-	    }
+		}
 
 		$found_products = array();
 
@@ -408,16 +401,11 @@ function printcenter_product_vendors_report_vendor_sales() {
 					continue;
 				}
 
-				// Get date
-				$date 	= date( 'Ym', strtotime( $order_item->post_date ) );
-
-				// Calculate vendor earnings from sale
-				$comm_percent = printcenter_get_commission_percent( $order_item->product_id, $vendor_id );
-				$vendor_earnings = $order_item->line_total * ( $comm_percent / 100 );
-
-				// Set values
-				$product_sales[ $date ] 	= isset( $product_sales[ $date ] ) ? $product_sales[ $date ] + $order_item->item_quantity : $order_item->item_quantity;
-				$product_totals[ $date ] 	= isset( $product_totals[ $date ] ) ? $product_totals[ $date ] + $vendor_earnings : $vendor_earnings;
+				$date                    = date( 'Ym', strtotime( $order_item->post_date ) );
+				$comm_percent            = printcenter_get_commission_percent( $order_item->product_id, $vendor_id );
+				$vendor_earnings         = $order_item->line_total * ( $comm_percent / 100 );
+				$product_sales[ $date ]  = isset( $product_sales[ $date ] ) ? $product_sales[ $date ] + $order_item->item_quantity : $order_item->item_quantity;
+				$product_totals[ $date ] = isset( $product_totals[ $date ] ) ? $product_totals[ $date ] + $vendor_earnings : $vendor_earnings;
 
 				if ( $product_sales[ $date ] > $max_sales ) {
 					$max_sales = $product_sales[ $date ];
@@ -441,9 +429,8 @@ function printcenter_product_vendors_report_vendor_sales() {
 				<?php
 					if( sizeof( $product_sales ) > 0 ) {
 						foreach( $product_sales as $date => $sales ) {
-							$width = ($sales>0) ? (round($sales) / round($max_sales)) * 100 : 0;
-							$width2 = ($product_totals[$date]>0) ? (round($product_totals[$date]) / round($max_totals)) * 100 : 0;
-
+							$width       = ($sales>0) ? (round($sales) / round($max_sales)) * 100 : 0;
+							$width2      = ($product_totals[$date]>0) ? (round($product_totals[$date]) / round($max_totals)) * 100 : 0;
 							$orders_link = admin_url( 'edit.php?s&post_status=all&post_type=shop_order&action=-1&s=' . urlencode( implode( ' ', $chosen_product_titles ) ) . '&m=' . date( 'Ym', strtotime( $date . '01' ) ) . '&shop_order_status=' . implode( ",", apply_filters( 'woocommerce_reports_order_statuses', array( 'completed', 'processing', 'on-hold' ) ) ) );
 							$orders_link = apply_filters( 'woocommerce_reports_order_link', $orders_link, $chosen_product_ids, $chosen_product_titles );
 
@@ -461,6 +448,5 @@ function printcenter_product_vendors_report_vendor_sales() {
 			</tbody>
 		</table>
 		<?php
-
 	}
 }
