@@ -136,6 +136,7 @@
 .post-type-ssi_product #preview-action,
 .post-type-ssi_product .misc-pub-visibility,
 .post-type-ssi_product .misc-pub-curtime,
-.post-type-ssi_product #edit-slug-box {
+.post-type-ssi_product #edit-slug-box,
+.post-type-website #minor-publishing {
 	display: none;
 }
