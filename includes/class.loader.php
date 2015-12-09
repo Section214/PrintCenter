@@ -83,7 +83,7 @@ class PrintCenter_Loader {
 
 		// Plugin version
 		if( ! defined( 'PRINTCENTER_VER' ) ) {
-			define( 'PRINTCENTER_VER', '1.0.0' );
+			define( 'PRINTCENTER_VER', '0.0.1' );
 		}
 
 		// Plugin path
@@ -162,6 +162,10 @@ class PrintCenter_Loader {
 			$woo_vendors->commissions    = new WooCommerce_Product_Vendors_Commissions( __FILE__ );
 			$woo_vendors->export_handler = new WooCommerce_Product_Vendors_Export_Handler();
 		}
+
+		if( ! class_exists( 'S214_Plugin_Updater' ) ) {
+			require_once PRINTCENTER_DIR . 'includes/libraries/S214_Plugin_Updater.php';
+		}
 	}
 
 
@@ -174,6 +178,22 @@ class PrintCenter_Loader {
 	 */
 	private function hooks() {
 		add_action( 'tgmpa_register', array( $this, 'plugin_activation' ) );
+
+		// Licensing
+		if( is_admin() && current_user_can( 'update_plugins' ) ) {
+			$license = get_option( 'printcenter_license', false );
+
+			if( $license == 'valid' ) {
+				$update = new S214_Plugin_Updater( 'https://section214.com', $this->plugin_file, array(
+					'version' => PRINTCENTER_VER,
+					'license' => '98731c11ef37695fa07a7b0151e0a00e',
+					'item_id' => 39378,
+					'author'  => 'Daniel J Griffiths'
+				) );
+			} else {
+				add_action( 'admin_init', 'printcenter_register_site' );
+			}
+		}
 	}
 
 
