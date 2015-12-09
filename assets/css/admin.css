@@ -130,3 +130,12 @@
 .woocommerce ul.wc-tabs li.ssi_tab a:before {
 	content: '\e01c';
 }
+
+/* Post type styles
+-------------------------------------------------------------- */
+.post-type-ssi_product #preview-action,
+.post-type-ssi_product .misc-pub-visibility,
+.post-type-ssi_product .misc-pub-curtime,
+.post-type-ssi_product #edit-slug-box {
+	display: none;
+}

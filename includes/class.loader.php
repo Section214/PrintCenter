@@ -114,6 +114,7 @@ class PrintCenter_Loader {
 		require_once PRINTCENTER_DIR . 'includes/actions.php';
 		require_once PRINTCENTER_DIR . 'includes/scripts.php';
 		require_once PRINTCENTER_DIR . 'includes/functions.php';
+		require_once PRINTCENTER_DIR . 'includes/post-types.php';
 
 		// Libraries
 		require_once PRINTCENTER_DIR . 'includes/libraries/Array2XML.php';
@@ -137,6 +138,7 @@ class PrintCenter_Loader {
 		if( is_admin() ) {
 			require_once PRINTCENTER_DIR . 'includes/admin/product-settings.php';
 			require_once PRINTCENTER_DIR . 'includes/admin/settings.php';
+			require_once PRINTCENTER_DIR . 'includes/admin/ssi-products/meta-boxes.php';
 			require_once PRINTCENTER_DIR . 'includes/ssitest.php';
 		}
 
