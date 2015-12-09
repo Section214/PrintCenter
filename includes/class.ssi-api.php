@@ -24,54 +24,6 @@ class SSI_API {
 	/**
 	 * @access      public
 	 * @since       1.0.0
-	 * @var         string $endpoint The SSI API endpoint
-	 */
-	public $endpoint = 'https://orders.silkscreenink.com/orderslive/';
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         string $custid The customer ID
-	 */
-	public $custid = '1024';
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         int $custzip The customer zip code
-	 */
-	public $custzip = 80304;
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         string $debug_custid The customer ID
-	 */
-	public $debug_custid = '1013';
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         int $debug_custzip The customer zip code
-	 */
-	public $debug_custzip = 99999;
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         string $debug_endpoint The SSI API endpoint
-	 */
-	public $debug_endpoint = 'https://orders.silkscreenink.com/orderstest/';
-
-
-	/**
-	 * @access      public
-	 * @since       1.0.0
 	 * @var         string $shipping The defined shipping method
 	 */
 	public $shipping = 'UPS Ground';
@@ -117,11 +69,27 @@ class SSI_API {
 			$the_order = wc_get_order( $order_id );
 		}
 
+		$ssi_mode = printcenter()->loader->settings->get_option( 'ssi_mode', 'live' );
+
+		if( $ssi_mode == 'capture' ) {
+			$custid   = printcenter()->loader->settings->get_option( 'ssi_test_custid', '1013' );
+			$custzip  = printcenter()->loader->settings->get_option( 'ssi_test_custzip', '99999' );
+			$endpoint = 'https://orders.silkscreenink.com/capture.asp';
+		} elseif( $ssi_mode == 'test' ) {
+			$custid   = printcenter()->loader->settings->get_option( 'ssi_test_custid', '1013' );
+			$custzip  = printcenter()->loader->settings->get_option( 'ssi_test_custzip', '99999' );
+			$endpoint = 'https://orders.silkscreenink.com/orderstest/default.asp';
+		} else {
+			$custid   = printcenter()->loader->settings->get_option( 'ssi_custid', '1024' );
+			$custzip  = printcenter()->loader->settings->get_option( 'ssi_custzip', '80304' );
+			$endpoint = 'https://orders.silkscreenink.com/orderslive/';
+		}
+
 		$ssi_order = array(
 			'DocType'          => 'Order',
 			'GarmentsProvided' => 'No',
-			'CustID'           => ( $this->debug ? $this->debug_custid : $this->custid ),
-			'CustZip'          => ( $this->debug ? $this->debug_custzip : $this->custzip ),
+			'CustID'           => $custid,
+			'CustZip'          => $custzip,
 			'PO'               => $order_id,
 			'ShipTo'           => array(
 				'FirstName' => ( $posted['billing_first_name'] ? $posted['billing_first_name'] : '' ),
@@ -184,19 +152,20 @@ class SSI_API {
 			$xml = Array2XML::createXML( 'Request', $ssi_order );
 			$xml = $xml->saveXML();
 
-			if( $this->debug ) {
-				echo '<textarea style="width: 400px; height: 200px;">' . $xml . '</textarea>';
-				echo sprintf( __( 'Post debug data to the form on %s.', 'printcenter' ), '<a href="https://orders.silkscreenink.com/orderstest/form.asp" target="_blank">' . __( 'this page', 'printcenter' ) . '</a>' );
-				exit;
-			} else {
-				$content = array(
-					'headers' => array(
-						'content-type' => 'text/xml'
-					),
-					'body' => $xml
-				);
+			$content = array(
+				'headers' => array(
+					'content-type' => 'text/xml'
+				),
+				'body' => $xml
+			);
 
-				$response = wp_remote_post( $this->endpoint, $content );
+			$response = wp_remote_post( $endpoint, $content );
+
+			if( $ssi_mode == 'test' ) {
+				$response = wp_remote_retrieve_body( $response );
+
+				echo '<pre>' . printcenter_prettify_xml( $response, true ) . '</pre>';
+				exit;
 			}
 		}
 	}
