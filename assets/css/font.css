@@ -41,7 +41,7 @@
     content: "a";
 }
 
-.menu-top.toplevel_page_printcenter-settings .wp-menu-image::before {
+#menu-posts-shop_commission .wp-menu-image::before {
     font-family: "printcenter";
     content: "a";
 }

@@ -9,7 +9,7 @@
 
 // Exit if accessed directly
 if( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 
@@ -21,12 +21,13 @@ if( ! defined( 'ABSPATH' ) ) {
  * @return      void
  */
 function printcenter_process_actions() {
-    if( isset( $_POST['printcenter-action'] ) ) {
-        do_action( 'printcenter_' . $_POST['printcenter-action'], $_POST );
-    }
+	if( isset( $_POST['printcenter-action'] ) ) {
+		do_action( 'printcenter_' . $_POST['printcenter-action'], $_POST );
+	}
 
-    if( isset( $_GET['printcenter-action'] ) ) {
-        do_action( 'printcenter_' . $_GET['printcenter-action'], $_GET );
-    }
+	if( isset( $_GET['printcenter-action'] ) ) {
+		do_action( 'printcenter_' . $_GET['printcenter-action'], $_GET );
+	}
 }
+add_action( 'init', 'printcenter_process_actions' );
 add_action( 'admin_init', 'printcenter_process_actions' );

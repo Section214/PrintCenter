@@ -124,3 +124,9 @@
     display: inline-block;
     clear: both;
 }
+
+#woocommerce-coupon-data ul.wc-tabs li.ssi_tab a:before,
+#woocommerce-product-data ul.wc-tabs li.ssi_tab a:before,
+.woocommerce ul.wc-tabs li.ssi_tab a:before {
+	content: '\e01c';
+}
