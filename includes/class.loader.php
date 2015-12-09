@@ -45,6 +45,13 @@ class PrintCenter_Loader {
 
 
 	/**
+	 * @var         objct $settings The Domain Power Pack settings object
+	 * @since       1.0.0
+	 */
+	public $settings;
+
+
+	/**
 	 * Setup the loader
 	 *
 	 * @since       1.0.0
@@ -129,6 +136,7 @@ class PrintCenter_Loader {
 
 		if( is_admin() ) {
 			require_once PRINTCENTER_DIR . 'includes/admin/product-settings.php';
+			require_once PRINTCENTER_DIR . 'includes/admin/settings.php';
 			require_once PRINTCENTER_DIR . 'includes/ssitest.php';
 		}
 
@@ -136,6 +144,14 @@ class PrintCenter_Loader {
 		if( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 			require_once PRINTCENTER_DIR . 'includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php';
 		}
+
+		// Settings
+		if( ! class_exists( 'S214_Settings' ) ) {
+			require_once PRINTCENTER_DIR . 'includes/libraries/S214-Settings/source/class.s214-settings.php';
+		}
+
+		$this->settings = new S214_Settings( 'printcenter', 'general' );
+		$printcenter_options = $this->settings->get_settings();
 	}
 
 

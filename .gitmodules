@@ -1,0 +1,3 @@
+[submodule "includes/libraries/S214-Settings"]
+	path = includes/libraries/S214-Settings
+	url = git@github.com:Section214/S214-Settings.git
