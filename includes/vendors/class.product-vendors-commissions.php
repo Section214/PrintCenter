@@ -104,7 +104,7 @@ class WooCommerce_Product_Vendors_Commissions {
 			'publicly_queryable' => true,
 			'exclude_from_search' => true,
 			'show_ui' => true,
-			'show_in_menu' => true,
+			'show_in_menu' => false,
 			'show_in_nav_menus' => false,
 			'query_var' => false,
 			'rewrite' => true,
