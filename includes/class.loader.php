@@ -124,6 +124,7 @@ class PrintCenter_Loader {
 
 		if( is_admin() ) {
 			require_once PRINTCENTER_DIR . 'includes/admin/settings.php';
+			require_once PRINTCENTER_DIR . 'includes/admin/contextual-help.php';
 			require_once PRINTCENTER_DIR . 'includes/ssitest.php';
 		}
 

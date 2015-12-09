@@ -141,3 +141,9 @@
 .post-type-website #edit-slug-box {
 	display: none;
 }
+
+#woocommerce-product-data .product_data_tabs.wc-tabs .inventory_tab,
+#woocommerce-product-data .product_data_tabs.wc-tabs .linked_product_tab,
+#woocommerce-product-data .product_data_tabs.wc-tabs .advanced_tab {
+	display: none !important;
+}
