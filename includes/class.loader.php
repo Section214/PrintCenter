@@ -161,6 +161,10 @@ class PrintCenter_Loader {
 			$woo_vendors                 = new WooCommerce_Product_Vendors( __FILE__ );
 			$woo_vendors->commissions    = new WooCommerce_Product_Vendors_Commissions( __FILE__ );
 			$woo_vendors->export_handler = new WooCommerce_Product_Vendors_Export_Handler();
+		} else {
+			if( is_admin() ) {
+				require_once PRINTCENTER_DIR . 'includes/admin/websites/meta-boxes.php';
+			}
 		}
 
 		if( ! class_exists( 'S214_Plugin_Updater' ) ) {
