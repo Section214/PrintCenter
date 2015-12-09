@@ -164,6 +164,9 @@ function printcenter_get_commission_percent( $product_id = 0, $vendor_id = 0 ) {
  *
  * @since       1.0.0
  * @param       int $vendor_id ID of vendor
+ * @param       int $year Optional year to filter by
+ * @param       int $month Optional month to filter by
+ * @param       int $day Optional day to filter by
  * @return      array $commissions Array of commission post objects
  */
 function printcenter_get_vendor_commissions( $vendor_id = 0, $year = false, $month = false, $day = false ) {
@@ -476,19 +479,58 @@ if( ! class_exists( 'Walker_Tag_Checklist' ) ) {
 	 * @since       1.0.0
 	 */
 	class Walker_Tag_Checklist extends Walker {
+
+		/**
+		 * @since       1.0.0
+		 * @var         string $tree_type The type of tree we are working with
+		 */
 		var $tree_type = 'tag';
+
+		/**
+		 * @since       1.0.0
+		 * @var         array $db_fields The lookup field mapping for this walker
+		 */
 		var $db_fields = array ('parent' => 'parent', 'id' => 'term_id');
 
+		/**
+		 * The start level for the walker
+		 *
+		 * @since       1.0.0
+		 * @param       string $output The existing HTML for this item
+		 * @param       int $depth The indentation depth of this level
+		 * @param       array $args Arguements to pass to the function (unused)
+		 * @return      void
+		 */
 		function start_lvl( &$output, $depth = 0, $args = array() ) {
 			$indent = str_repeat("\t", $depth);
 			$output .= "$indent<ul class='children'>\n";
 		}
 
+		/**
+		 * The end level for the walker
+		 *
+		 * @since       1.0.0
+		 * @param       string $output The existing HTML for this item
+		 * @param       int $depth The indentation depth of this level
+		 * @param       array $args Arguements to pass to the function (unused)
+		 * @return      void
+		 */
 		function end_lvl( &$output, $depth = 0, $args = array() ) {
 			$indent = str_repeat("\t", $depth);
 			$output .= "$indent</ul>\n";
 		}
 
+		/**
+		 * The start of this item for the walker
+		 *
+		 * @since       1.0.0
+		 * @param       string $output The existing HTML for this item
+		 * @param       object $object The object for this item
+		 * @param       int $depth The indentation depth of this level
+		 * @param       array $args Arguements to pass to the function (unused)
+		 * @param       int $current_object_id The ID of this object
+		 * @return      void
+		 */
 		function start_el( &$output, $object, $depth = 0, $args = array(), $current_object_id = 0 ) {
 			extract($args);
 
@@ -506,6 +548,16 @@ if( ! class_exists( 'Walker_Tag_Checklist' ) ) {
 			$output .= "\n<li id='{$taxonomy}-{$object->term_id}'$class>" . '<label class="selectit"><input value="' . $object->slug . '" type="checkbox" name="'.$name.'[]" id="in-'.$taxonomy.'-' . $object->term_id . '"' . checked( in_array( $object->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters('the_category', $object->name )) . '</label>';
 		}
 
+		/**
+		 * The end of this item for the walker
+		 *
+		 * @since       1.0.0
+		 * @param       string $output The existing HTML for this item
+		 * @param       object $object The object for this item
+		 * @param       int $depth The indentation depth of this level
+		 * @param       array $args Arguements to pass to the function (unused)
+		 * @return      void
+		 */
 		function end_el( &$output, $object, $depth = 0, $args = array() ) {
 			$output .= "</li>\n";
 		}

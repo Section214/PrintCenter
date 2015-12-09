@@ -1,4 +1,10 @@
 <?php
+/**
+ * Bootstraps the PHPUnit test suite
+ *
+ * @package     PrintCenter\Tests\Bootstrap
+ * @since       1.0.0
+ */
 
 $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
 $_SERVER['SERVER_NAME'] = '';
@@ -9,6 +15,12 @@ if ( !$_tests_dir ) $_tests_dir = '/tmp/wordpress-tests-lib';
 
 require_once $_tests_dir . '/includes/functions.php';
 
+/**
+ * Manually load the plugin we are testing
+ *
+ * @since       1.0.0
+ * @return      void
+ */
 function _manually_load_plugin() {
 	require dirname( __FILE__ ) . '/../printcenter.php';
 }
