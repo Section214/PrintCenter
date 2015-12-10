@@ -12,6 +12,6 @@
 
 	"globals": {
 		"jQuery": false,
-		"edd_scripts": false
+		"printcenter_scripts": false
 	}
 }
