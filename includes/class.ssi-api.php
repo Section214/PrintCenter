@@ -50,6 +50,21 @@ class SSI_API {
 	 */
 	public function hooks() {
 		add_action( 'woocommerce_checkout_order_processed', array( $this, 'process_api_order' ), 10, 2 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'disable_woocommerce_checkout_scripts' ) );
+	}
+
+
+	/**
+	 * Disable WooCommerce checkout scripts if test mode is active
+	 *
+	 * @access      public
+	 * @since       1.0.0
+	 * @return      void
+	 */
+	public function disable_woocommerce_checkout_scripts() {
+		if( printcenter()->loader->settings->get_option( 'ssi_mode', 'live' ) == 'test' ) {
+			wp_dequeue_script( 'wc-checkout' );
+		}
 	}
 
 
