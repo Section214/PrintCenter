@@ -77,7 +77,7 @@ class SSI_API {
 		}
 
 		$ship_method_data = $the_order->get_items( 'shipping' );
-		$ship_method_data = array_values( $ship_method_data )[0];
+		$ship_method_data = reset( $ship_method_data );
 		$ship_method_id = str_replace( 'WC_Weight_Based_Shipping_', '', $ship_method_data['item_meta']['method_id'][0] );
 		$ship_method = new WC_Weight_Based_Shipping( $ship_method_id );
 		$ship_method = $ship_method->name;
