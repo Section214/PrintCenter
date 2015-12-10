@@ -130,6 +130,25 @@ function printcenter_contextual_help() {
 		) );
 	}
 
+	if( $screen->id == 'shop_commission' || $screen->id == 'edit-shop_commission' ) {
+		$screen->add_help_tab( array(
+			'id'      => 'printcenter-commission-intro',
+			'title'   => __( 'Add/Edit Commission', 'printcenter' ),
+			'content' =>
+				'<p><strong>' . __( 'Introduction', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The Add/Edit Commission pages are where you can... add and edit commmissions. What this means is you <em>probably</em> don\'t belong here. However... if you <em>do</em> want to be here, read on!', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Commission Details', 'printcenter' ) . '</strong></p>' .
+				'<img src="' . PRINTCENTER_URL . 'assets/img/help/commission-help-1.png" style="max-width: 100%" />' .
+				'<p><strong>' . __( 'Product', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The product field allows you to select the product which a given commission should be applied to.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Vendor', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The vendor field allows you to select the vendor who should receive a given commission.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Amount', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The amount field allows you to specify the value of a given commission.', 'printcenter' ) . '</p>' .
+				'<p class="description">' . sprintf( __( '<strong>NOTE:</strong> Remember that commissions are automatically generated at the time of purchase, so you probably shouldn\'t be messing around with them. Additionally, each site should only have a single vendor. Vendors can be defined <a href="%s" target="_blank">here</a>.'), admin_url( 'edit-tags.php?taxonomy=shop_vendor&post_type=product' ) ) . '</p>'
+		) );
+	}
+
 	// Allow extensions to modify contextual help
 	do_action( 'printcenter_contextual_help', $screen );
 }
