@@ -65,10 +65,7 @@ class PrintCenter_Loader {
 		$this->load_textdomain();
 		$this->includes();
 		$this->hooks();
-
-		if( $this->settings->get_option( 'site_type', 'store' ) == 'store' ) {
-			$this->ssi = new SSI_API();
-		}
+		$this->ssi = new SSI_API();
 	}
 
 
@@ -125,6 +122,8 @@ class PrintCenter_Loader {
 		if( is_admin() ) {
 			require_once PRINTCENTER_DIR . 'includes/admin/settings.php';
 			require_once PRINTCENTER_DIR . 'includes/admin/contextual-help.php';
+			require_once PRINTCENTER_DIR . 'includes/admin/product-settings.php';
+			require_once PRINTCENTER_DIR . 'includes/admin/ssi-products/meta-boxes.php';
 			require_once PRINTCENTER_DIR . 'includes/ssitest.php';
 		}
 
@@ -133,40 +132,29 @@ class PrintCenter_Loader {
 			require_once PRINTCENTER_DIR . 'includes/libraries/S214-Settings/source/class.s214-settings.php';
 		}
 
-		$this->settings = new S214_Settings( 'printcenter', 'general' );
+		$this->settings = new S214_Settings( 'printcenter', 'ssi' );
 		$printcenter_options = $this->settings->get_settings();
 
-		if( $this->settings->get_option( 'site_type', 'store' ) == 'store' ) {
-			// TGM
-			if( ! class_exists( 'TGM_Plugin_Activation' ) ) {
-				require_once PRINTCENTER_DIR . 'includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php';
-			}
-
-			if( is_admin() ) {
-				require_once PRINTCENTER_DIR . 'includes/admin/product-settings.php';
-				require_once PRINTCENTER_DIR . 'includes/admin/ssi-products/meta-boxes.php';
-			}
-
-			// SSI files
-			require_once PRINTCENTER_DIR . 'includes/class.ssi-api.php';
-
-			// Vendor files
-			require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-commissions.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-widget.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-export-handler.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/actions.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/functions.php';
-			require_once PRINTCENTER_DIR . 'includes/vendors/reports.php';
-
-			$woo_vendors                 = new WooCommerce_Product_Vendors( __FILE__ );
-			$woo_vendors->commissions    = new WooCommerce_Product_Vendors_Commissions( __FILE__ );
-			$woo_vendors->export_handler = new WooCommerce_Product_Vendors_Export_Handler();
-		} else {
-			if( is_admin() ) {
-				require_once PRINTCENTER_DIR . 'includes/admin/websites/meta-boxes.php';
-			}
+		// TGM
+		if( ! class_exists( 'TGM_Plugin_Activation' ) ) {
+			require_once PRINTCENTER_DIR . 'includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php';
 		}
+
+		// SSI files
+		require_once PRINTCENTER_DIR . 'includes/class.ssi-api.php';
+
+		// Vendor files
+		require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-commissions.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-widget.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-export-handler.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/actions.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/functions.php';
+		require_once PRINTCENTER_DIR . 'includes/vendors/reports.php';
+
+		$woo_vendors                 = new WooCommerce_Product_Vendors( __FILE__ );
+		$woo_vendors->commissions    = new WooCommerce_Product_Vendors_Commissions( __FILE__ );
+		$woo_vendors->export_handler = new WooCommerce_Product_Vendors_Export_Handler();
 
 		if( ! class_exists( 'S214_Plugin_Updater' ) ) {
 			require_once PRINTCENTER_DIR . 'includes/libraries/S214_Plugin_Updater.php';
@@ -247,34 +235,29 @@ class PrintCenter_Loader {
 	 * @return      void
 	 */
 	public function plugin_activation() {
-		if( $this->settings->get_option( 'site_type', 'store' ) == 'store' ) {
-			$plugins = array(
-				array(
-					'name'     => __( 'JC WooCommerce Advanced Attributes', 'printcenter' ),
-					'slug'     => 'jc-woocommerce-advanced-attributes',
-					'source'   => PRINTCENTER_URL . 'assets/plugins/advanced-product-attributes.zip',
-					'required' => true
-				),
-				array(
-					'name'     => __( 'WooCommerce', 'printcenter' ),
-					'slug'     => 'woocommerce',
-					'required' => true
-				),
-				array(
-					'name'     => 'Weight Based Shipping for Woocommerce',
-					'slug'     => 'weight-based-shipping-for-woocommerce',
-					'required' => true
-				)
-			);
-		} else {
-			$plugins = array(
-				array(
-					'name'     => 'WordPress REST API (Version 2)',
-					'slug'     => 'rest-api',
-					'required' => true
-				)
-			);
-		}
+		$plugins = array(
+			array(
+				'name'     => __( 'JC WooCommerce Advanced Attributes', 'printcenter' ),
+				'slug'     => 'jc-woocommerce-advanced-attributes',
+				'source'   => PRINTCENTER_URL . 'assets/plugins/advanced-product-attributes.zip',
+				'required' => true
+			),
+			array(
+				'name'     => __( 'WooCommerce', 'printcenter' ),
+				'slug'     => 'woocommerce',
+				'required' => true
+			),
+			array(
+				'name'     => 'Weight Based Shipping for Woocommerce',
+				'slug'     => 'weight-based-shipping-for-woocommerce',
+				'required' => true
+			),
+			array(
+				'name'     => 'WordPress REST API (Version 2)',
+				'slug'     => 'rest-api',
+				'required' => true
+			)
+		);
 
 		$config = array(
 			'id'           => 'printcenter',

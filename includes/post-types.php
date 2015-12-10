@@ -19,63 +19,33 @@ if( ! defined( 'ABSPATH' ) ) {
  * @return      void
  */
 function printcenter_setup_post_types() {
-	if( printcenter()->loader->settings->get_option( 'site_type', 'store' ) == 'store' ) {
-		$ssi_product_labels = apply_filters( 'printcenter_ssi_product_labels', array(
-			'name'               => _x( 'SSI Products', 'ssi product post type name', 'printcenter' ),
-			'singular_name'      => _x( 'SSI Product', 'singular ssi product post type name', 'printcenter' ),
-			'add_new'            => __( 'Add New', 'printcenter' ),
-			'add_new_item'       => __( 'Add New SSI Product', 'printcenter' ),
-			'edit_item'          => __( 'Edit SSI Product', 'printcenter' ),
-			'new_item'           => __( 'New SSI Product', 'printcenter' ),
-			'all_items'          => __( 'All SSI Products', 'printcenter' ),
-			'view_item'          => __( 'View SSI Product', 'printcenter' ),
-			'search_items'       => __( 'Search SSI Products', 'printcenter' ),
-			'not_found'          => __( 'No SSI Products found', 'printcenter' ),
-			'not_found_in_trash' => __( 'No SSI Products found in Trash', 'printcenter' ),
-			'parent_item_colon'  => '',
-			'menu_name'          => _x( 'SSI Products', 'ssi product post type menu name', 'printcenter' )
-		) );
+	$ssi_product_labels = apply_filters( 'printcenter_ssi_product_labels', array(
+		'name'               => _x( 'SSI Products', 'ssi product post type name', 'printcenter' ),
+		'singular_name'      => _x( 'SSI Product', 'singular ssi product post type name', 'printcenter' ),
+		'add_new'            => __( 'Add New', 'printcenter' ),
+		'add_new_item'       => __( 'Add New SSI Product', 'printcenter' ),
+		'edit_item'          => __( 'Edit SSI Product', 'printcenter' ),
+		'new_item'           => __( 'New SSI Product', 'printcenter' ),
+		'all_items'          => __( 'All SSI Products', 'printcenter' ),
+		'view_item'          => __( 'View SSI Product', 'printcenter' ),
+		'search_items'       => __( 'Search SSI Products', 'printcenter' ),
+		'not_found'          => __( 'No SSI Products found', 'printcenter' ),
+		'not_found_in_trash' => __( 'No SSI Products found in Trash', 'printcenter' ),
+		'parent_item_colon'  => '',
+		'menu_name'          => _x( 'SSI Products', 'ssi product post type menu name', 'printcenter' )
+	) );
 
-		$ssi_product_args = array(
-			'labels'             => $ssi_product_labels,
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => false,
-			'has_archive'        => false,
-			'hierarchical'       => false,
-			'supports'           => apply_filters( 'printcenter_ssi_product_supports', array( 'title' ) ),
-		);
-		register_post_type( 'ssi_product', apply_filters( 'printcenter_ssi_product_post_type_args', $ssi_product_args ) );
-	} else {
-		$website_labels = apply_filters( 'printcenter_website_labels', array(
-			'name'               => _x( 'Websites', 'website post type name', 'printcenter' ),
-			'singular_name'      => _x( 'Website', 'singular website post type name', 'printcenter' ),
-			'add_new'            => __( 'Add New', 'printcenter' ),
-			'add_new_item'       => __( 'Add New Website', 'printcenter' ),
-			'edit_item'          => __( 'Edit Website', 'printcenter' ),
-			'new_item'           => __( 'New Website', 'printcenter' ),
-			'all_items'          => __( 'All Websites', 'printcenter' ),
-			'view_item'          => __( 'View Website', 'printcenter' ),
-			'search_items'       => __( 'Search Websites', 'printcenter' ),
-			'not_found'          => __( 'No Websites found', 'printcenter' ),
-			'not_found_in_trash' => __( 'No Websites found in Trash', 'printcenter' ),
-			'parent_item_colon'  => '',
-			'menu_name'          => _x( 'Websites', 'website post type menu name', 'printcenter' )
-		) );
-
-		$website_args = array(
-			'labels'             => $website_labels,
-			'public'             => true,
-			'publicly_queryable' => true,
-			'show_ui'            => true,
-			'show_in_menu'       => false,
-			'has_archive'        => false,
-			'hierarchical'       => false,
-			'supports'           => apply_filters( 'printcenter_website_supports', array( 'title' ) ),
-		);
-		register_post_type( 'website', apply_filters( 'printcenter_website_post_type_args', $website_args ) );
-	}
+	$ssi_product_args = array(
+		'labels'             => $ssi_product_labels,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => false,
+		'has_archive'        => false,
+		'hierarchical'       => false,
+		'supports'           => apply_filters( 'printcenter_ssi_product_supports', array( 'title' ) ),
+	);
+	register_post_type( 'ssi_product', apply_filters( 'printcenter_ssi_product_post_type_args', $ssi_product_args ) );
 }
 add_action( 'init', 'printcenter_setup_post_types', 1 );
 
@@ -92,10 +62,6 @@ function printcenter_change_default_title( $title ) {
 
 	if( $screen->post_type == 'ssi_product' ) {
 		$title = __( 'Enter product name here', 'printcenter' );
-	}
-
-	if( $screen->post_type == 'website' ) {
-		$title = __( 'Enter website name here', 'printcenter' );
 	}
 
 	return $title;
@@ -117,14 +83,6 @@ function printcenter_updated_messages( $messages ) {
 		6 => __( 'Product published.', 'printcenter' ),
 		7 => __( 'Product saved.', 'printcenter' ),
 		8 => __( 'Product submitted.', 'printcenter' )
-	);
-
-	$messages['website'] = array(
-		1 => __( 'Website updated.', 'printcenter' ),
-		4 => __( 'Website updated.', 'printcenter' ),
-		6 => __( 'Website published.', 'printcenter' ),
-		7 => __( 'Website saved.', 'printcenter' ),
-		8 => __( 'Website submitted.', 'printcenter' )
 	);
 
 	return $messages;
@@ -152,17 +110,6 @@ function printcenter_bulk_updated_messages( $bulk_messages, $bulk_counts ) {
 		'untrashed' => sprintf( _n( '%1$s %2$s restored from the Trash.', '%1$s %3$s restored from the Trash.', $bulk_counts['untrashed'], 'printcenter' ), $bulk_counts['untrashed'], $singular, $plural )
 	);
 
-	$website_singular = __( 'Website', 'printcenter' );
-	$website_plural   = __( 'Websites', 'printcenter' );
-
-	$bulk_messages['website'] = array(
-		'updated'   => sprintf( _n( '%1$s %2$s updated.', '%1$s %3$s updated.', $bulk_counts['updated'], 'printcenter' ), $bulk_counts['updated'], $website_singular, $website_plural ),
-		'locked'    => sprintf( _n( '%1$s %2$s not updated, somebody is editing it.', '%1$s %3$s not updated, somebody is editing them.', $bulk_counts['locked'], 'printcenter' ), $bulk_counts['locked'], $website_singular, $website_plural ),
-		'deleted'   => sprintf( _n( '%1$s %2$s permanently deleted.', '%1$s %3$s permanently deleted.', $bulk_counts['deleted'], 'printcenter' ), $bulk_counts['deleted'], $website_singular, $website_plural ),
-		'trashed'   => sprintf( _n( '%1$s %2$s moved to the Trash.', '%1$s %3$s moved to the Trash.', $bulk_counts['trashed'], 'printcenter' ), $bulk_counts['trashed'], $website_singular, $website_plural ),
-		'untrashed' => sprintf( _n( '%1$s %2$s restored from the Trash.', '%1$s %3$s restored from the Trash.', $bulk_counts['untrashed'], 'printcenter' ), $bulk_counts['untrashed'], $website_singular, $website_plural )
-	);
-
 	return $bulk_messages;
 }
 add_filter( 'bulk_post_updated_messages', 'printcenter_bulk_updated_messages', 10, 2 );
@@ -176,13 +123,8 @@ add_filter( 'bulk_post_updated_messages', 'printcenter_bulk_updated_messages', 1
  */
 function printcenter_add_menu_items() {
 	add_submenu_page( 'printcenter-settings', __( 'PrintCenter Settings', 'printcenter' ), __( 'Settings', 'printcenter' ), 'manage_options', 'printcenter-settings' );
-
-	if( printcenter()->loader->settings->get_option( 'site_type', 'store' ) == 'store' ) {
-		add_submenu_page( 'printcenter-settings', __( 'SSI Products', 'printcenter' ), __( 'SSI Products', 'printcenter' ), 'manage_options', 'edit.php?post_type=ssi_product' );
-		add_submenu_page( 'printcenter-settings', __( 'Commissions', 'printcenter' ), __( 'Commissions', 'printcenter' ), 'manage_options', 'edit.php?post_type=shop_commission' );
-	} else {
-		add_submenu_page( 'printcenter-settings', __( 'Websites', 'printcenter' ), __( 'Websites', 'printcenter' ), 'manage_options', 'edit.php?post_type=website' );
-	}
+	add_submenu_page( 'printcenter-settings', __( 'SSI Products', 'printcenter' ), __( 'SSI Products', 'printcenter' ), 'manage_options', 'edit.php?post_type=ssi_product' );
+	add_submenu_page( 'printcenter-settings', __( 'Commissions', 'printcenter' ), __( 'Commissions', 'printcenter' ), 'manage_options', 'edit.php?post_type=shop_commission' );
 }
 add_action( 'admin_menu', 'printcenter_add_menu_items', 10 );
 
@@ -197,7 +139,7 @@ function printcenter_fix_active_menu_item() {
 	// Not one of our post types, bail out
 	global $typenow;
 
-	if( ! in_array( $typenow, array( 'ssi_product', 'shop_commission', 'website' ) ) ) {
+	if( ! in_array( $typenow, array( 'ssi_product', 'shop_commission' ) ) ) {
 		return;
 	}
 	?>

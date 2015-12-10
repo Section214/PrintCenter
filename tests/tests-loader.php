@@ -48,7 +48,6 @@ class Tests_Loader extends WP_UnitTestCase {
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/actions.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/functions.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/reports.php' );
-		$this->assertFileExists( PRINTCENTER_DIR . 'includes/admin/websites/meta-boxes.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/class.loader.php' );
 
 		/** Check Libraries Exist */
@@ -68,16 +67,7 @@ class Tests_Loader extends WP_UnitTestCase {
         $this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/S214-Settings/source/assets/js/admin.min.js' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/admin.css' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/admin.min.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/font-awesome.min.css' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/font.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/jquery-ui-classic.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/jquery-ui-classic.min.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/jquery-ui-fresh.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/jquery-ui-fresh.min.css' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/js/admin.js' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/js/admin.min.js' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/js/colorbox/jquery.colorbox.js' );
-        $this->assertFileExists( PRINTCENTER_DIR . 'assets/js/colorbox/jquery.colorbox-min.js' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-1.png' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-2.png' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-3.png' );

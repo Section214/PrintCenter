@@ -25,8 +25,6 @@ function printcenter_contextual_help() {
 		'edit-ssi_product',
 		'shop_commission',
 		'edit-shop_commission',
-		'website',
-		'edit-website',
 		'toplevel_page_printcenter-settings',
 		'product',
 		'edit-product'
