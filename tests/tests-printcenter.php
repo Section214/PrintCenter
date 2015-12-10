@@ -6,7 +6,7 @@ class Tests_PrintCenter extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->object = origami();
+		$this->object = printcenter();
 	}
 
 	public function tearDown() {
