@@ -22,14 +22,6 @@ class SSI_API {
 
 
 	/**
-	 * @access      public
-	 * @since       1.0.0
-	 * @var         string $shipping The defined shipping method
-	 */
-	public $shipping = 'Priority Mail';
-
-
-	/**
 	 * Get things started
 	 *
 	 * @access      public
@@ -84,6 +76,12 @@ class SSI_API {
 			$the_order = wc_get_order( $order_id );
 		}
 
+		$ship_method_data = $the_order->get_items( 'shipping' );
+		$ship_method_data = array_values( $ship_method_data )[0];
+		$ship_method_id = str_replace( 'WC_Weight_Based_Shipping_', '', $ship_method_data['item_meta']['method_id'][0] );
+		$ship_method = new WC_Weight_Based_Shipping( $ship_method_id );
+		$ship_method = $ship_method->name;
+
 		$ssi_mode = printcenter()->loader->settings->get_option( 'ssi_mode', 'live' );
 
 		if( $ssi_mode == 'capture' ) {
@@ -117,7 +115,7 @@ class SSI_API {
 				'Email'     => ( $posted['billing_email'] ? $posted['billing_email'] : '' ),
 				'Phone'     => ( $posted['billing_phone'] ? $posted['billing_phone'] : '' ),
 			),
-			'ShipMethod'         => $this->shipping,
+			'ShipMethod'         => $ship_method,
 			'ProductionPriority' => 'Normal',
 		);
 
