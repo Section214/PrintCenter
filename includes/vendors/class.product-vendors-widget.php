@@ -2,7 +2,7 @@
 /**
  * Bootstraps the Vendor system
  *
- * @package     PrintCenter\Vendor
+ * @package     PrintCenter\Vendor\Widget
  * @since       1.0.0
  */
 
