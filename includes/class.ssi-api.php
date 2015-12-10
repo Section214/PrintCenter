@@ -170,8 +170,3 @@ class SSI_API {
 		}
 	}
 }
-
-function so_27023433_disable_checkout_script(){
-	wp_dequeue_script( 'wc-checkout' );
-}
-add_action( 'wp_enqueue_scripts', 'so_27023433_disable_checkout_script' );
