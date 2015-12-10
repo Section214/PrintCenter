@@ -41,6 +41,7 @@ class Tests_Loader extends WP_UnitTestCase {
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/admin/product-settings.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/admin/ssi-products/meta-boxes.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/class.ssi-api.php' );
+		$this->assertFileExists( PRINTCENTER_DIR . 'includes/class.shipping-api.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/class.product-vendors.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-commissions.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/vendors/class.product-vendors-widget.php' );
@@ -54,6 +55,7 @@ class Tests_Loader extends WP_UnitTestCase {
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/S214-Settings/source/class.s214-settings.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/Array2XML.php' );
+		$this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/xmlstr_to_array.php' );
 		$this->assertFileExists( PRINTCENTER_DIR . 'includes/libraries/S214_Plugin_Updater.php' );
 
         /** Check Assets Exist */

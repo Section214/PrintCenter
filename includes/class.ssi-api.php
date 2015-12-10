@@ -54,9 +54,9 @@ class SSI_API {
 	 * @return      void
 	 */
 	public function disable_woocommerce_checkout_scripts() {
-		if( printcenter()->loader->settings->get_option( 'ssi_mode', 'live' ) == 'test' ) {
+		//if( printcenter()->loader->settings->get_option( 'ssi_mode', 'live' ) == 'test' ) {
 			wp_dequeue_script( 'wc-checkout' );
-		}
+		//}
 	}
 
 
@@ -116,6 +116,7 @@ class SSI_API {
 				'Phone'     => ( $posted['billing_phone'] ? $posted['billing_phone'] : '' ),
 			),
 			'ShipMethod'         => $ship_method,
+			'ShipNotifyURL'      => home_url( 'wp-json/ssi-shipping/v1/order/?key=' . md5( home_url() ) ),
 			'ProductionPriority' => 'Normal',
 		);
 
@@ -173,6 +174,7 @@ class SSI_API {
 			);
 
 			$response = wp_remote_post( $endpoint, $content );
+			var_dump( $response ); exit;
 
 			if( $ssi_mode == 'test' ) {
 				$response = wp_remote_retrieve_body( $response );

@@ -45,7 +45,16 @@ class PrintCenter_Loader {
 
 
 	/**
-	 * @var         objct $settings The Domain Power Pack settings object
+	 * @access      public
+	 * @since       1.0.0
+	 * @var         object $shipping The Shipping API object
+	 */
+	public $shipping;
+
+
+	/**
+	 * @access      public
+	 * @var         object $settings The Domain Power Pack settings object
 	 * @since       1.0.0
 	 */
 	public $settings;
@@ -54,6 +63,7 @@ class PrintCenter_Loader {
 	/**
 	 * Setup the loader
 	 *
+	 * @access      public
 	 * @since       1.0.0
 	 * @param       string $plugin_file The main plugin file
 	 */
@@ -66,6 +76,7 @@ class PrintCenter_Loader {
 		$this->includes();
 		$this->hooks();
 		$this->ssi = new SSI_API();
+		$this->shipping = new Shipping_API();
 	}
 
 
@@ -118,6 +129,7 @@ class PrintCenter_Loader {
 
 		// Libraries
 		require_once PRINTCENTER_DIR . 'includes/libraries/Array2XML.php';
+		require_once PRINTCENTER_DIR . 'includes/libraries/xmlstr_to_array.php';
 
 		if( is_admin() ) {
 			require_once PRINTCENTER_DIR . 'includes/admin/settings.php';
@@ -142,6 +154,7 @@ class PrintCenter_Loader {
 
 		// SSI files
 		require_once PRINTCENTER_DIR . 'includes/class.ssi-api.php';
+		require_once PRINTCENTER_DIR . 'includes/class.shipping-api.php';
 
 		// Vendor files
 		require_once PRINTCENTER_DIR . 'includes/vendors/class.product-vendors.php';
