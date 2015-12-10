@@ -1,4 +1,4 @@
-# PrintCenter Unit Tests [![Build Status](https://secure.travis-ci.org/Section214/PrintCenter.png?branch=master)](https://travis-ci.org/Section214/PrintCenter) [![Coverage Status](https://coveralls.io/repos/Section214/PrintCenter/badge.png)](https://coveralls.io/r/Section214/PrintCenter) #
+# PrintCenter Unit Tests [![Build Status](https://api.travis-ci.org/Section214/PrintCenter.png?branch=master)](https://travis-ci.org/Section214/PrintCenter) [![Coverage Status](https://coveralls.io/repos/Section214/PrintCenter/badge.png)](https://coveralls.io/r/Section214/PrintCenter) #
 
 
 This folder contains all the tests for PrintCenter.
