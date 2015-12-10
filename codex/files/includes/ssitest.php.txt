@@ -1,0 +1,602 @@
+<?php
+/**
+ * SSI Test Suite
+ *
+ * @package     PrintCenter\SSITest
+ * @since       1.0.0
+ * @deprecated
+ */
+
+// Exit if accessed directly
+if( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+
+/**
+ * Render the SSI Test page
+ *
+ * @since       1.0.0
+ * @return      void
+ * @deprecated
+ */
+function printcenter_render_settings_page() {
+    ?>
+    <div class="wrap">
+        <h2>SSI API Test</h2>
+        <div class="metabox-holder">
+            <div class="postbox">
+                <h3>Test Framework</h3>
+                <div class="inside">
+                    <form method="post">
+                        <p>
+                            <strong><label for="ssi_custid">Customer ID:</label></strong><br />
+                            <input type="text" id="ssi_custid" name="ssi_custid" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_custzip">Customer Zip:</label></strong><br />
+                            <input type="text" id="ssi_custzip" name="ssi_custzip" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_po">PO:</label></strong><br />
+                            <input type="text" id="ssi_po" name="ssi_po" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_garmentpos">Garment POs:</label></strong><br />
+                            <input type="text" id="ssi_garmentpos" name="ssi_garmentpos" class="small-text">
+                        </p>
+                        <hr />
+                        <p>
+                            <strong><label for="ssi_firstname">First Name:</label></strong><br />
+                            <input type="text" id="ssi_firstname" name="ssi_firstname" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_lastname">Last Name:</label></strong><br />
+                            <input type="text" id="ssi_lastname" name="ssi_lastname" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_adrx1">Address:</label></strong><br />
+                            <input type="text" id="ssi_adrx1" name="ssi_adrx1" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_city">City:</label></strong><br />
+                            <input type="text" id="ssi_city" name="ssi_city" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_state">State:</label></strong><br />
+                            <select name="ssi_state" placeholder="Select a state">
+                                <option value="">-- Select a state --</option>
+                                <?php
+                                    $states = printcenter_get_states();
+
+                                    foreach( $states as $abbr => $name ) {
+                                        echo '<option value="' . $abbr . '">' . $name . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </p>
+                        <p>
+                            <strong><label for="ssi_zip">Zip:</label></strong><br />
+                            <input type="text" id="ssi_zip" name="ssi_zip" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_country">Country:</label></strong><br />
+                            <select name="ssi_country">
+                                <option value="">-- Select a country --</option>
+                                <?php
+                                    $countries = printcenter_get_countries();
+
+                                    foreach( $countries as $abbr => $name ) {
+                                        echo '<option value="' . $abbr . '">' . $name . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </p>
+                        <p>
+                            <strong><label for="ssi_email">Email:</label></strong><br />
+                            <input type="text" id="ssi_email" name="ssi_email" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_phone">Phone:</label></strong><br />
+                            <input type="text" id="ssi_phone" name="ssi_phone" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_shipmethod">Shipping Method:</label></strong><br />
+                            <select name="ssi_shipmethod">
+                                <option value="">-- Select a shipping method --</option>
+                                <?php
+                                    $methods = printcenter_get_shipping_methods();
+
+                                    foreach( $methods as $abbr => $name ) {
+                                        echo '<option value="' . $abbr . '">' . $name . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </p>
+                        <hr />
+                        <p>
+                            <strong><label for="ssi_custsku">Customer SKU:</label></strong><br />
+                            <input type="text" id="ssi_custsku" name="ssi_custsku" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_sku">SKU:</label></strong><br />
+                            <input type="text" id="ssi_sku" name="ssi_sku" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_descrip">Description:</label></strong><br />
+                            <input type="text" id="ssi_descrip" name="ssi_descrip" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_color">Color:</label></strong><br />
+                            <input type="text" id="ssi_color" name="ssi_color" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_designlocation">Design Location:</label></strong><br />
+                            <input type="text" id="ssi_designlocation" name="ssi_designlocation" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_designtype">Design Type:</label></strong><br />
+                            <select name="ssi_designtype">
+                                <option value="">-- Select a design type --</option>
+                                <option value="1">Screen Printing</option>
+                                <option value="2">Embroidery</option>
+                                <option value="3">Direct On Garment</option>
+                            </select>
+                        </p>
+                        <p>
+                            <strong><label for="ssi_designart">Design Art:</label></strong><br />
+                            <input type="text" id="ssi_designart" name="ssi_designart" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_designthumb">Design Thumb:</label></strong><br />
+                            <input type="text" id="ssi_designthumb" name="ssi_designthumb" class="regular-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_designcategory">Design Category:</label></strong><br />
+                            <select name="ssi_designcategory">
+                                <option value="">-- Select a design category --</option>
+                                <option value="SM">Small</option>
+                                <option value="REG">Regular</option>
+                                <option value="LG">Large</option>
+                            </select>
+                        </p>
+                        <p>
+                            <strong><label for="ssi_qty">Quantity:</label></strong><br />
+                            <input type="text" id="ssi_qty" name="ssi_qty" class="small-text">
+                        </p>
+                        <p>
+                            <strong><label for="ssi_size">Size:</label></strong><br />
+                            <input type="text" id="ssi_size" name="ssi_size" class="small-text">
+                        </p>
+                        <p>
+                            <input type="hidden" name="printcenter-action" value="ssitest" />
+                            <input type="submit" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+
+/**
+ * Process SSI test data
+ *
+ * @since       1.0.0
+ * @return      void
+ * @deprecated
+ */
+function printcenter_run_ssi_test() {
+    $array = array(
+        'DocType'            => 'Order',
+        'GarmentsProvided'   => 'No',
+        'CustID'             => $_POST['ssi_custid'],
+        'CustZip'            => $_POST['ssi_custzip'],
+        'PO'                 => $_POST['ssi_po'],
+        'GarmentPOs'         => $_POST['ssi_garmentpos'],
+        'ShipTo'             => array(
+            'FirstName'      => $_POST['ssi_firstname'],
+            'LastName'       => $_POST['ssi_lastname'],
+            'Adrx1'          => $_POST['ssi_adrx1'],
+            'City'           => $_POST['ssi_city'],
+            'State'          => $_POST['ssi_state'],
+            'Zip'            => $_POST['ssi_zip'],
+            'Country'        => $_POST['ssi_country'],
+            'Email'          => $_POST['ssi_email'],
+            'Phone'          => $_POST['ssi_phone']
+        ),
+        'ShipMethod'         => $_POST['ssi_shipmethod'],
+        'ProductionPriority' => 'Express',
+        'OrderNotes'         => 'Test purchase',
+        'Item'               => array(
+            'CustSKU'        => $_POST['ssi_custsku'],
+            'SKU'            => $_POST['ssi_sku'],
+            'Descrip'        => $_POST['ssi_descrip'],
+            'Color'          => $_POST['ssi_color'],
+            'DesignLocation' => $_POST['ssi_designlocation'],
+            'DesignType'     => $_POST['ssi_designtype'],
+            'DesignArt'      => $_POST['ssi_designart'],
+            'DesignThumb'    => $_POST['ssi_designthumb'],
+            'DesignCategory' => $_POST['ssi_designcategory'],
+            'Qty'            => $_POST['ssi_qty'],
+            'Size'           => $_POST['ssi_size']
+        )
+    );
+
+    $xml = Array2XML::createXML( 'Request', $array );
+
+    echo '<textarea>' . $xml->saveXML() . '</textarea>'; exit;
+}
+add_action( 'printcenter_ssitest', 'printcenter_run_ssi_test' );
+
+
+/**
+ * Get an array of US states
+ *
+ * @since       1.0.0
+ * @return      array $state_list The array of states
+ * @deprecated
+ */
+function printcenter_get_states() {
+    $state_list = array(
+        'AL' => "Alabama",
+        'AK' => "Alaska",
+        'AZ' => "Arizona",
+        'AR' => "Arkansas",
+        'CA' => "California",
+        'CO' => "Colorado",
+        'CT' => "Connecticut",
+        'DE' => "Delaware",
+        'DC' => "District Of Columbia",
+        'FL' => "Florida",
+        'GA' => "Georgia",
+        'HI' => "Hawaii",
+        'ID' => "Idaho",
+        'IL' => "Illinois",
+        'IN' => "Indiana",                                                                                                                                                                                                                                                          'IA'=>"Iowa",
+        'KS' => "Kansas",
+        'KY' => "Kentucky",
+        'LA' => "Louisiana",
+        'ME' => "Maine",
+        'MD' => "Maryland",
+        'MA' => "Massachusetts",
+        'MI' => "Michigan",
+        'MN' => "Minnesota",
+        'MS' => "Mississippi",
+        'MO' => "Missouri",
+        'MT' => "Montana",
+        'NE' => "Nebraska",
+        'NV' => "Nevada",
+        'NH' => "New Hampshire",
+        'NJ' => "New Jersey",
+        'NM' => "New Mexico",
+        'NY' => "New York",
+        'NC' => "North Carolina",
+        'ND' => "North Dakota",
+        'OH' => "Ohio",
+        'OK' => "Oklahoma",
+        'OR' => "Oregon",
+        'PA' => "Pennsylvania",
+        'RI' => "Rhode Island",
+        'SC' => "South Carolina",
+        'SD' => "South Dakota",
+        'TN' => "Tennessee",
+        'TX' => "Texas",
+        'UT' => "Utah",
+        'VT' => "Vermont",
+        'VA' => "Virginia",
+        'WA' => "Washington",
+        'WV' => "West Virginia",
+        'WI' => "Wisconsin",
+        'WY' => "Wyoming"
+    );
+
+    return $state_list;
+}
+
+
+/**
+ * Get an array of countries
+ *
+ * @since       1.0.0
+ * @return      array $countries The array of countries
+ * @deprecated
+ */
+function printcenter_get_countries() {
+	$countries = array(
+		'US' => 'United States',
+		'CA' => 'Canada',
+		'GB' => 'United Kingdom',
+		'AF' => 'Afghanistan',
+		'AX' => '&#197;land Islands',
+		'AL' => 'Albania',
+		'DZ' => 'Algeria',
+		'AS' => 'American Samoa',
+		'AD' => 'Andorra',
+		'AO' => 'Angola',
+		'AI' => 'Anguilla',
+		'AQ' => 'Antarctica',
+		'AG' => 'Antigua and Barbuda',
+		'AR' => 'Argentina',
+		'AM' => 'Armenia',
+		'AW' => 'Aruba',
+		'AU' => 'Australia',
+		'AT' => 'Austria',
+		'AZ' => 'Azerbaijan',
+		'BS' => 'Bahamas',
+		'BH' => 'Bahrain',
+		'BD' => 'Bangladesh',
+		'BB' => 'Barbados',
+		'BY' => 'Belarus',
+		'BE' => 'Belgium',
+		'BZ' => 'Belize',
+		'BJ' => 'Benin',
+		'BM' => 'Bermuda',
+		'BT' => 'Bhutan',
+		'BO' => 'Bolivia',
+		'BQ' => 'Bonaire, Saint Eustatius and Saba',
+		'BA' => 'Bosnia and Herzegovina',
+		'BW' => 'Botswana',
+		'BV' => 'Bouvet Island',
+		'BR' => 'Brazil',
+		'IO' => 'British Indian Ocean Territory',
+		'BN' => 'Brunei Darrussalam',
+		'BG' => 'Bulgaria',
+		'BF' => 'Burkina Faso',
+		'BI' => 'Burundi',
+		'KH' => 'Cambodia',
+		'CM' => 'Cameroon',
+		'CV' => 'Cape Verde',
+		'KY' => 'Cayman Islands',
+		'CF' => 'Central African Republic',
+		'TD' => 'Chad',
+		'CL' => 'Chile',
+		'CN' => 'China',
+		'CX' => 'Christmas Island',
+		'CC' => 'Cocos Islands',
+		'CO' => 'Colombia',
+		'KM' => 'Comoros',
+		'CD' => 'Congo, Democratic People\'s Republic',
+		'CG' => 'Congo, Republic of',
+		'CK' => 'Cook Islands',
+		'CR' => 'Costa Rica',
+		'CI' => 'Cote d\'Ivoire',
+		'HR' => 'Croatia/Hrvatska',
+		'CU' => 'Cuba',
+		'CW' => 'Cura&Ccedil;ao',
+		'CY' => 'Cyprus',
+		'CZ' => 'Czech Republic',
+		'DK' => 'Denmark',
+		'DJ' => 'Djibouti',
+		'DM' => 'Dominica',
+		'DO' => 'Dominican Republic',
+		'TP' => 'East Timor',
+		'EC' => 'Ecuador',
+		'EG' => 'Egypt',
+		'GQ' => 'Equatorial Guinea',
+		'SV' => 'El Salvador',
+		'ER' => 'Eritrea',
+		'EE' => 'Estonia',
+		'ET' => 'Ethiopia',
+		'FK' => 'Falkland Islands',
+		'FO' => 'Faroe Islands',
+		'FJ' => 'Fiji',
+		'FI' => 'Finland',
+		'FR' => 'France',
+		'GF' => 'French Guiana',
+		'PF' => 'French Polynesia',
+		'TF' => 'French Southern Territories',
+		'GA' => 'Gabon',
+		'GM' => 'Gambia',
+		'GE' => 'Georgia',
+		'DE' => 'Germany',
+		'GR' => 'Greece',
+		'GH' => 'Ghana',
+		'GI' => 'Gibraltar',
+		'GL' => 'Greenland',
+		'GD' => 'Grenada',
+		'GP' => 'Guadeloupe',
+		'GU' => 'Guam',
+		'GT' => 'Guatemala',
+		'GG' => 'Guernsey',
+		'GN' => 'Guinea',
+		'GW' => 'Guinea-Bissau',
+		'GY' => 'Guyana',
+		'HT' => 'Haiti',
+		'HM' => 'Heard and McDonald Islands',
+		'VA' => 'Holy See (City Vatican State)',
+		'HN' => 'Honduras',
+		'HK' => 'Hong Kong',
+		'HU' => 'Hungary',
+		'IS' => 'Iceland',
+		'IN' => 'India',
+		'ID' => 'Indonesia',
+		'IR' => 'Iran',
+		'IQ' => 'Iraq',
+		'IE' => 'Ireland',
+		'IM' => 'Isle of Man',
+		'IL' => 'Israel',
+		'IT' => 'Italy',
+		'JM' => 'Jamaica',
+		'JP' => 'Japan',
+		'JE' => 'Jersey',
+		'JO' => 'Jordan',
+		'KZ' => 'Kazakhstan',
+		'KE' => 'Kenya',
+		'KI' => 'Kiribati',
+		'KW' => 'Kuwait',
+		'KG' => 'Kyrgyzstan',
+		'LA' => 'Lao People\'s Democratic Republic',
+		'LV' => 'Latvia',
+		'LB' => 'Lebanon',
+		'LS' => 'Lesotho',
+		'LR' => 'Liberia',
+		'LY' => 'Libyan Arab Jamahiriya',
+		'LI' => 'Liechtenstein',
+		'LT' => 'Lithuania',
+		'LU' => 'Luxembourg',
+		'MO' => 'Macau',
+		'MK' => 'Macedonia',
+		'MG' => 'Madagascar',
+		'MW' => 'Malawi',
+		'MY' => 'Malaysia',
+		'MV' => 'Maldives',
+		'ML' => 'Mali',
+		'MT' => 'Malta',
+		'MH' => 'Marshall Islands',
+		'MQ' => 'Martinique',
+		'MR' => 'Mauritania',
+		'MU' => 'Mauritius',
+		'YT' => 'Mayotte',
+		'MX' => 'Mexico',
+		'FM' => 'Micronesia',
+		'MD' => 'Moldova, Republic of',
+		'MC' => 'Monaco',
+		'MN' => 'Mongolia',
+		'ME' => 'Montenegro',
+		'MS' => 'Montserrat',
+		'MA' => 'Morocco',
+		'MZ' => 'Mozambique',
+		'MM' => 'Myanmar',
+		'NA' => 'Namibia',
+		'NR' => 'Nauru',
+		'NP' => 'Nepal',
+		'NL' => 'Netherlands',
+		'AN' => 'Netherlands Antilles',
+		'NC' => 'New Caledonia',
+		'NZ' => 'New Zealand',
+		'NI' => 'Nicaragua',
+		'NE' => 'Niger',
+		'NG' => 'Nigeria',
+		'NU' => 'Niue',
+		'NF' => 'Norfolk Island',
+		'KR' => 'North Korea',
+		'MP' => 'Northern Mariana Islands',
+		'NO' => 'Norway',
+		'OM' => 'Oman',
+		'PK' => 'Pakistan',
+		'PW' => 'Palau',
+		'PS' => 'Palestinian Territories',
+		'PA' => 'Panama',
+		'PG' => 'Papua New Guinea',
+		'PY' => 'Paraguay',
+		'PE' => 'Peru',
+		'PH' => 'Phillipines',
+		'PN' => 'Pitcairn Island',
+		'PL' => 'Poland',
+		'PT' => 'Portugal',
+		'PR' => 'Puerto Rico',
+		'QA' => 'Qatar',
+		'XK' => 'Republic of Kosovo',
+		'RE' => 'Reunion Island',
+		'RO' => 'Romania',
+		'RU' => 'Russian Federation',
+		'RW' => 'Rwanda',
+		'BL' => 'Saint Barth&eacute;lemy',
+		'SH' => 'Saint Helena',
+		'KN' => 'Saint Kitts and Nevis',
+		'LC' => 'Saint Lucia',
+		'MF' => 'Saint Martin (French)',
+		'SX' => 'Saint Martin (Dutch)',
+		'PM' => 'Saint Pierre and Miquelon',
+		'VC' => 'Saint Vincent and the Grenadines',
+		'SM' => 'San Marino',
+		'ST' => 'S&atilde;o Tom&eacute; and Pr&iacute;ncipe',
+		'SA' => 'Saudi Arabia',
+		'SN' => 'Senegal',
+		'RS' => 'Serbia',
+		'SC' => 'Seychelles',
+		'SL' => 'Sierra Leone',
+		'SG' => 'Singapore',
+		'SK' => 'Slovak Republic',
+		'SI' => 'Slovenia',
+		'SB' => 'Solomon Islands',
+		'SO' => 'Somalia',
+		'ZA' => 'South Africa',
+		'GS' => 'South Georgia',
+		'KP' => 'South Korea',
+		'SS' => 'South Sudan',
+		'ES' => 'Spain',
+		'LK' => 'Sri Lanka',
+		'SD' => 'Sudan',
+		'SR' => 'Suriname',
+		'SJ' => 'Svalbard and Jan Mayen Islands',
+		'SZ' => 'Swaziland',
+		'SE' => 'Sweden',
+		'CH' => 'Switzerland',
+		'SY' => 'Syrian Arab Republic',
+		'TW' => 'Taiwan',
+		'TJ' => 'Tajikistan',
+		'TZ' => 'Tanzania',
+		'TH' => 'Thailand',
+		'TL' => 'Timor-Leste',
+		'TG' => 'Togo',
+		'TK' => 'Tokelau',
+		'TO' => 'Tonga',
+		'TT' => 'Trinidad and Tobago',
+		'TN' => 'Tunisia',
+		'TR' => 'Turkey',
+		'TM' => 'Turkmenistan',
+		'TC' => 'Turks and Caicos Islands',
+		'TV' => 'Tuvalu',
+		'UG' => 'Uganda',
+		'UA' => 'Ukraine',
+		'AE' => 'United Arab Emirates',
+		'UY' => 'Uruguay',
+		'UM' => 'US Minor Outlying Islands',
+		'UZ' => 'Uzbekistan',
+		'VU' => 'Vanuatu',
+		'VE' => 'Venezuela',
+		'VN' => 'Vietnam',
+		'VG' => 'Virgin Islands (British)',
+		'VI' => 'Virgin Islands (USA)',
+		'WF' => 'Wallis and Futuna Islands',
+		'EH' => 'Western Sahara',
+		'WS' => 'Western Samoa',
+		'YE' => 'Yemen',
+		'ZM' => 'Zambia',
+		'ZW' => 'Zimbabwe'
+	);
+
+    return $countries;
+}
+
+
+/**
+ * Get an array of SSI shipping methods
+ *
+ * @since       1.0.0
+ * @return      array $methods The available shipping methods
+ * @deprecated
+ */
+function printcenter_get_shipping_methods() {
+    $methods = array(
+        'UPS Ground'                  => 'UPS Ground',
+        'UPSMIUS'                     => 'UPS MIUS',
+        'UPSMIINT'                    => 'UPSMIINT',
+        'Next Day 8:30'               => 'UPS Next Day 8:30',
+        'Next Day 10:30'              => 'UPS Next Day 10:30',
+        'Next Day 3:00'               => 'UPS Next Day 3:00',
+        '2 Day Air'                   => 'UPS 2 Day Air',
+        '2 Day Air 12:00'             => 'UPS 2 Day Air 12:00',
+        '3 Day Select'                => 'UPS 3 Day Select',
+        'Next Day Air Saturday 9:30'  => 'UPS Next Day Air Saturday 9:30',
+        'Next Day Air Saturday Noon'  => 'UPS Next Day Air Saturday Noon',
+        'US Mail'                     => 'US Mail',
+        'US Priority Mail'            => 'US Priority Mail',
+        'First Class Mail'            => 'First Class Mail',
+        'Priority Mail'               => 'Priority Mail',
+        'Express Mail'                => 'Express Mail',
+        'First Class International'   => 'First Class International',
+        'Priority Mail International' => 'Priority Mail International',
+        'Express Mail International'  => 'Express Mail International',
+        'Fedex Ground'                => 'Fedex Ground',
+        'Fedex Overnight'             => 'Fedex Overnight',
+        'AMS'                         => 'AMS'
+    );
+
+    return $methods;
+}
+

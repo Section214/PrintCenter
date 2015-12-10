@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">24</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">8</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-316133758"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-316133758" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Array2XML.html">Array2XML</a></li>
+                                                    <li class="class"><a href="../classes/PrintCenter.html">PrintCenter</a></li>
+                                                    <li class="class"><a href="../classes/PrintCenter_Loader.html">PrintCenter_Loader</a></li>
+                                                    <li class="class"><a href="../classes/S214_Plugin_Updater.html">S214_Plugin_Updater</a></li>
+                                                    <li class="class"><a href="../classes/S214_Settings.html">S214_Settings</a></li>
+                                                    <li class="class"><a href="../classes/Shipping_API.html">Shipping_API</a></li>
+                                                    <li class="class"><a href="../classes/SSI_API.html">SSI_API</a></li>
+                                                    <li class="class"><a href="../classes/Tests_Loader.html">Tests_Loader</a></li>
+                                                    <li class="class"><a href="../classes/Tests_PrintCenter.html">Tests_PrintCenter</a></li>
+                                                    <li class="class"><a href="../classes/TGM_Bulk_Installer.html">TGM_Bulk_Installer</a></li>
+                                                    <li class="class"><a href="../classes/TGM_Bulk_Installer_Skin.html">TGM_Bulk_Installer_Skin</a></li>
+                                                    <li class="class"><a href="../classes/TGM_Plugin_Activation.html">TGM_Plugin_Activation</a></li>
+                                                    <li class="class"><a href="../classes/TGMPA_Bulk_Installer.html">TGMPA_Bulk_Installer</a></li>
+                                                    <li class="class"><a href="../classes/TGMPA_Bulk_Installer_Skin.html">TGMPA_Bulk_Installer_Skin</a></li>
+                                                    <li class="class"><a href="../classes/TGMPA_List_Table.html">TGMPA_List_Table</a></li>
+                                                    <li class="class"><a href="../classes/TGMPA_Utils.html">TGMPA_Utils</a></li>
+                                                    <li class="class"><a href="../classes/Walker_Tag_Checklist.html">Walker_Tag_Checklist</a></li>
+                                                    <li class="class"><a href="../classes/WooCommerce_Product_Vendors.html">WooCommerce_Product_Vendors</a></li>
+                                                    <li class="class"><a href="../classes/WooCommerce_Product_Vendors_Commissions.html">WooCommerce_Product_Vendors_Commissions</a></li>
+                                                    <li class="class"><a href="../classes/WooCommerce_Product_Vendors_Export_Handler.html">WooCommerce_Product_Vendors_Export_Handler</a></li>
+                                                    <li class="class"><a href="../classes/WooCommerce_Product_Vendors_Widget.html">WooCommerce_Product_Vendors_Widget</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>TGM_Plugin_Activation</h1>
+                    <p><em>Automatic plugin installation and activation library.</em></p>
+                    <p>Creates a way to automatically install and activate plugins from within themes.
+The plugins can be either bundled, downloaded from the WordPress
+Plugin Repository or downloaded from another external source.</p>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method___get" class="">__get()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_init" class="">init()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_add_plugin_action_link_filters" class="">add_plugin_action_link_filters()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_filter_plugin_action_links_activate" class="">filter_plugin_action_links_activate()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_filter_plugin_action_links_deactivate" class="">filter_plugin_action_links_deactivate()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_filter_plugin_action_links_update" class="">filter_plugin_action_links_update()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_admin_init" class="">admin_init()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_thickbox" class="">thickbox()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_admin_menu" class="">admin_menu()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_install_plugins_page" class="">install_plugins_page()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_inject_update_info" class="">inject_update_info()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_maybe_adjust_source_dir" class="">maybe_adjust_source_dir()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_notices" class="">notices()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_dismiss" class="">dismiss()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_register" class="">register()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_sanitize_key" class="">sanitize_key()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_config" class="">config()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_actions" class="">actions()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_flush_plugins_cache" class="">flush_plugins_cache()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_populate_file_path" class="">populate_file_path()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method__get_plugin_data_from_name" class="">_get_plugin_data_from_name()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_download_url" class="">get_download_url()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_info_link" class="">get_info_link()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_tgmpa_url" class="">get_tgmpa_url()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_tgmpa_status_url" class="">get_tgmpa_status_url()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_is_tgmpa_complete" class="">is_tgmpa_complete()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_is_plugin_installed" class="">is_plugin_installed()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_is_plugin_active" class="">is_plugin_active()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_can_plugin_update" class="">can_plugin_update()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_can_plugin_activate" class="">can_plugin_activate()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_installed_version" class="">get_installed_version()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_does_plugin_require_update" class="">does_plugin_require_update()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_does_plugin_have_update" class="">does_plugin_have_update()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_upgrade_notice" class="">get_upgrade_notice()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_plugins" class="">get_plugins()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_update_dismiss" class="">update_dismiss()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_force_activation" class="">force_activation()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_force_deactivation" class="">force_deactivation()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_show_tgmpa_version" class="">show_tgmpa_version()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_instance" class="">get_instance()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_instance" class="">$instance</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_plugins" class="">$plugins</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_parent_slug" class="">$parent_slug</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_capability" class="">$capability</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_default_path" class="">$default_path</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_has_notices" class="">$has_notices</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_dismissable" class="">$dismissable</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_dismiss_msg" class="">$dismiss_msg</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_is_automatic" class="">$is_automatic</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_message" class="">$message</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_strings" class="">$strings</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_wp_version" class="">$wp_version</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_page_hook" class="">$page_hook</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#constant_TGMPA_VERSION" class="">TGMPA_VERSION</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#constant_WP_REPO_REGEX" class="">WP_REPO_REGEX</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#constant_IS_URL_REGEX" class="">IS_URL_REGEX</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_add_admin_menu" class="">add_admin_menu()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_do_plugin_install" class="">do_plugin_install()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_activate_single_plugin" class="">activate_single_plugin()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_display_settings_errors" class="">display_settings_errors()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_plugin_source_type" class="">get_plugin_source_type()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method__get_plugin_basename_from_slug" class="">_get_plugin_basename_from_slug()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_wp_repo_download_url" class="">get_wp_repo_download_url()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_get_plugins_api" class="">get_plugins_api()</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#method_is_tgmpa_page" class="">is_tgmpa_page()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_sort_order" class="">$sort_order</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_has_forced_activation" class="">$has_forced_activation</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_has_forced_deactivation" class="">$has_forced_deactivation</a><br />
+                                                                    <a href="../classes/TGM_Plugin_Activation.html#property_menu" class="">$menu</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/includes.libraries.tgm-plugin-activation.class-tgm-plugin-activation.html"><div class="path-wrapper">includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">TGM-Plugin-Activation</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\TGM_Plugin_Activation</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                since
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Thomas Griffin</p>
+                                                                    <p>Gary Jones</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TGMPA_VERSION" name="constant_TGMPA_VERSION" class="anchor"></a>
+            <article id="constant_TGMPA_VERSION" class="constant">
+                <h3 class="">TGMPA_VERSION</h3>
+                <pre class="signature">TGMPA_VERSION</pre>
+                <p><em>TGMPA version number.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                            <p>string Version number.</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_WP_REPO_REGEX" name="constant_WP_REPO_REGEX" class="anchor"></a>
+            <article id="constant_WP_REPO_REGEX" class="constant">
+                <h3 class="">WP_REPO_REGEX</h3>
+                <pre class="signature">WP_REPO_REGEX</pre>
+                <p><em>Regular expression to test if a URL is a WP plugin repo URL.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                            <p>string Regex.</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_IS_URL_REGEX" name="constant_IS_URL_REGEX" class="anchor"></a>
+            <article id="constant_IS_URL_REGEX" class="constant">
+                <h3 class="">IS_URL_REGEX</h3>
+                <pre class="signature">IS_URL_REGEX</pre>
+                <p><em>Arbitrary regular expression to test if a string starts with a URL.</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                            <p>string Regex.</p>
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_instance" name="property_instance" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$instance</h3>
+                <pre class="signature">$instance : \TGM_Plugin_Activation</pre>
+                <p><em>Holds a copy of itself, so it can be referenced by the class name.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/TGM_Plugin_Activation.html">\TGM_Plugin_Activation</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_plugins" name="property_plugins" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$plugins</h3>
+                <pre class="signature">$plugins : array</pre>
+                <p><em>Holds arrays of plugin details.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                            <p>the array has the plugin slug as an associative key.</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$id</h3>
+                <pre class="signature">$id : string</pre>
+                <p><em>Name of the unique ID to hash notices.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_parent_slug" name="property_parent_slug" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$parent_slug</h3>
+                <pre class="signature">$parent_slug : string</pre>
+                <p><em>Parent menu file slug.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_capability" name="property_capability" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$capability</h3>
+                <pre class="signature">$capability : string</pre>
+                <p><em>Capability needed to view the plugin installation menu item.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_default_path" name="property_default_path" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$default_path</h3>
+                <pre class="signature">$default_path : string</pre>
+                <p><em>Default absolute path to folder containing bundled plugin zip files.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; Absolute path prefix to zip file location for bundled plugins. Default is empty string.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_has_notices" name="property_has_notices" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$has_notices</h3>
+                <pre class="signature">$has_notices : boolean</pre>
+                <p><em>Flag to show admin notices or not.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dismissable" name="property_dismissable" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$dismissable</h3>
+                <pre class="signature">$dismissable : boolean</pre>
+                <p><em>Flag to determine if the user can dismiss the notice nag.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dismiss_msg" name="property_dismiss_msg" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$dismiss_msg</h3>
+                <pre class="signature">$dismiss_msg : string</pre>
+                <p><em>Message to be output above nag notice if dismissable is false.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_is_automatic" name="property_is_automatic" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$is_automatic</h3>
+                <pre class="signature">$is_automatic : boolean</pre>
+                <p><em>Flag to set automatic activation of plugins. Off by default.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_message" name="property_message" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$message</h3>
+                <pre class="signature">$message : string</pre>
+                <p><em>Optional message to display before the plugins table.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; Message filtered by wp_kses_post(). Default is empty string.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_strings" name="property_strings" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$strings</h3>
+                <pre class="signature">$strings : array</pre>
+                <p><em>Holds configurable array of strings.</em></p>
+                <p>Default values are added in the constructor.</p>
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_wp_version" name="property_wp_version" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$wp_version</h3>
+                <pre class="signature">$wp_version : integer</pre>
+                <p><em>Holds the version of WordPress.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_page_hook" name="property_page_hook" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$page_hook</h3>
+                <pre class="signature">$page_hook : string</pre>
+                <p><em>Holds the hook name for the admin page.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_sort_order" name="property_sort_order" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$sort_order</h3>
+                <pre class="signature">$sort_order : array</pre>
+                <p><em>Holds arrays of plugin names to use to sort the plugins array.</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_has_forced_activation" name="property_has_forced_activation" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$has_forced_activation</h3>
+                <pre class="signature">$has_forced_activation : boolean</pre>
+                <p><em>Whether any plugins have the &#039;force_activation&#039; setting set to true.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_has_forced_deactivation" name="property_has_forced_deactivation" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$has_forced_deactivation</h3>
+                <pre class="signature">$has_forced_deactivation : boolean</pre>
+                <p><em>Whether any plugins have the &#039;force_deactivation&#039; setting set to true.</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_menu" name="property_menu" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$menu</h3>
+                <pre class="signature">$menu : string</pre>
+                <p><em>Name of the query-string argument for the admin page.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___get" name="method___get" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__get()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__get(string  <span class="argument">$name</span>) : mixed</pre>
+                <p><em>Magic method to get the value of a protected property outside of this class context.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Name of an inaccessible property.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The property value.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_init" name="method_init" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">init()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">init() </pre>
+                <p><em>Initialise the interactions between this class and WordPress.</em></p>
+                <p>Hooks in three new methods for the class: admin_menu, notices and styles.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/TGM_Plugin_Activation.html#method_admin_menu"><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href="../classes/TGM_Plugin_Activation.html#method_notices"><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add_plugin_action_link_filters" name="method_add_plugin_action_link_filters" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">add_plugin_action_link_filters()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add_plugin_action_link_filters() </pre>
+                <p><em>Hook in plugin action link filters for the WP native plugins page.</em></p>
+                <ul>
+<li>Prevent activation of plugins which don't meet the minimum version requirements.</li>
+<li>Prevent deactivation of force-activated plugins.</li>
+<li>Add update notice if update available.</li>
+</ul>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter_plugin_action_links_activate" name="method_filter_plugin_action_links_activate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter_plugin_action_links_activate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filter_plugin_action_links_activate(array  <span class="argument">$actions</span>) : array</pre>
+                <p><em>Remove the &#039;Activate&#039; link on the WP native plugins page if the plugin does not meet the
+minimum version requirements.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$actions </td>
+                                <td><p>Action links.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter_plugin_action_links_deactivate" name="method_filter_plugin_action_links_deactivate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter_plugin_action_links_deactivate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filter_plugin_action_links_deactivate(array  <span class="argument">$actions</span>) : array</pre>
+                <p><em>Remove the &#039;Deactivate&#039; link on the WP native plugins page if the plugin has been set to force activate.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$actions </td>
+                                <td><p>Action links.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filter_plugin_action_links_update" name="method_filter_plugin_action_links_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">filter_plugin_action_links_update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filter_plugin_action_links_update(array  <span class="argument">$actions</span>) : array</pre>
+                <p><em>Add a &#039;Requires update&#039; link on the WP native plugins page if the plugin does not meet the
+minimum version requirements.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$actions </td>
+                                <td><p>Action links.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_admin_init" name="method_admin_init" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">admin_init()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">admin_init() : null</pre>
+                <p><em>Handles calls to show plugin information via links in the notices.</em></p>
+                <p>We get the links in the admin notices to point to the TGMPA page, rather
+than the typical plugin-install.php file, so we can prepare everything
+beforehand.</p>
+<p>WP does not make it easy to show the plugin information in the thickbox -
+here we have to require a file that includes a function that does the
+main work of displaying it, enqueue some styles, set up some globals and
+finally call that function before exiting.</p>
+<p>Down right easy once you know how...</p>
+<p>Returns early if not the TGMPA page.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    null
+                                            &mdash; <p>Returns early if not the TGMPA page.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            global
+                        </th>
+                        <td>
+                                                                                            <p>string $tab Used as iframe div class names, helps with styling</p>
+                                                                                            <p>string $body_id Used as the iframe body ID, helps with styling</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_thickbox" name="method_thickbox" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">thickbox()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">thickbox() </pre>
+                <p><em>Enqueue thickbox scripts/styles for plugin info.</em></p>
+                <p>Thickbox is not automatically included on all admin pages, so we must
+manually enqueue it for those pages.</p>
+<p>Thickbox is only loaded if the user has not dismissed the admin
+notice or if there are any plugins left to install and activate.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_admin_menu" name="method_admin_menu" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">admin_menu()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">admin_menu() : null</pre>
+                <p><em>Adds submenu page if there are plugin actions to take.</em></p>
+                <p>This method adds the submenu page letting users know that a required
+plugin needs to be installed.</p>
+<p>This page disappears once the plugin has been installed and activated.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    null
+                                            &mdash; <p>Return early if user lacks capability to install a plugin.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/TGM_Plugin_Activation.html#method_init"><span class="namespace-wrapper"></span></a></dd>
+                                            <dd><a href="../classes/TGM_Plugin_Activation.html#method_install_plugins_page"><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_install_plugins_page" name="method_install_plugins_page" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">install_plugins_page()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">install_plugins_page() : null</pre>
+                <p><em>Echoes plugin installation form.</em></p>
+                <p>This method is the callback for the admin_menu method function.
+This displays the admin page and form area where the user can select to install and activate the plugin.
+Aborts early if we're processing a plugin installation action.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    null
+                                            &mdash; <p>Aborts early if we're processing a plugin installation action.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inject_update_info" name="method_inject_update_info" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">inject_update_info()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inject_update_info(array  <span class="argument">$plugins</span>) </pre>
+                <p><em>Inject information into the &#039;update_plugins&#039; site transient as WP checks that before running an update.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$plugins </td>
+                                <td><p>The plugin information for the plugins which are to be updated.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_maybe_adjust_source_dir" name="method_maybe_adjust_source_dir" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">maybe_adjust_source_dir()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">maybe_adjust_source_dir(string  <span class="argument">$source</span>, string  <span class="argument">$remote_source</span>, \WP_Upgrader  <span class="argument">$upgrader</span>) : string</pre>
+                <p><em>Adjust the plugin directory name if necessary.</em></p>
+                <p>The final destination directory of a plugin is based on the subdirectory name found in the
+(un)zipped source. In some cases - most notably GitHub repository plugin downloads -, this
+subdirectory name is not the same as the expected slug and the plugin will not be recognized
+as installed. This is fixed by adjusting the temporary unzipped source subdirectory name to
+the expected plugin slug.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$source </td>
+                                <td><p>Path to upgrade/zip-file-name.tmp/subdirectory/.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$remote_source </td>
+                                <td><p>Path to upgrade/zip-file-name.tmp.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\WP_Upgrader</td>
+                                <td>$upgrader </td>
+                                <td><p>Instance of the upgrader which installs the plugin.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>$source</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_notices" name="method_notices" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">notices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">notices() : null</pre>
+                <p><em>Echoes required plugin notice.</em></p>
+                <p>Outputs a message telling users that a specific plugin is required for
+their theme. If appropriate, it includes a link to the form page where
+users can install and activate the plugin.</p>
+<p>Returns early if we're on the Install page.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    null
+                                            &mdash; <p>Returns early if we're on the Install page.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                                    <tr>
+                        <th>
+                            global
+                        </th>
+                        <td>
+                                                                                            <p>object $current_screen</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dismiss" name="method_dismiss" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dismiss()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dismiss() </pre>
+                <p><em>Add dismissable admin notices.</em></p>
+                <p>Appends a link to the admin nag messages. If clicked, the admin notice disappears and no longer is visible to users.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_register" name="method_register" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">register()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">register(array|null  <span class="argument">$plugin</span>) : null</pre>
+                <p><em>Add individual plugin to our collection of plugins.</em></p>
+                <p>If the required keys are not set or the plugin has already
+been registered, the plugin is not added.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array|null</td>
+                                <td>$plugin </td>
+                                <td><p>Array of plugin arguments or null if invalid argument.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    null
+                                            &mdash; <p>Return early if incorrect argument.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sanitize_key" name="method_sanitize_key" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">sanitize_key()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sanitize_key(string  <span class="argument">$key</span>) : string</pre>
+                <p><em>Sanitizes a string key.</em></p>
+                <p>Near duplicate of WP Core <code>sanitize_key()</code>. The difference is that uppercase characters <em>are</em>
+allowed, so as not to break upgrade paths from non-standard bundled plugins using uppercase
+characters in the plugin directory path/slug. Silly them.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>String key.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Sanitized key</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_config" name="method_config" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">config()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">config(array  <span class="argument">$config</span>) </pre>
+                <p><em>Amend default configuration settings.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$config </td>
+                                <td><p>Array of config options to pass as class properties.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_actions" name="method_actions" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">actions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">actions(array  <span class="argument">$install_actions</span>) : array</pre>
+                <p><em>Amend action link after plugin installation.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$install_actions </td>
+                                <td><p>Existing array of actions.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Amended array of actions.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_flush_plugins_cache" name="method_flush_plugins_cache" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">flush_plugins_cache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">flush_plugins_cache(boolean  <span class="argument">$clear_update_cache = true</span>) </pre>
+                <p><em>Flushes the plugins cache on theme switch to prevent stale entries
+from remaining in the plugin table.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$clear_update_cache </td>
+                                <td><p>Optional. Whether to clear the Plugin updates cache.
+Parameter added in v2.5.0.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.4.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_populate_file_path" name="method_populate_file_path" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">populate_file_path()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">populate_file_path(string  <span class="argument">$plugin_slug = &#039;&#039;</span>) </pre>
+                <p><em>Set file_path key for each installed plugin.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plugin_slug </td>
+                                <td><p>Optional. If set, only (re-)populates the file path for that specific plugin.
+Parameter added in v2.5.0.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__get_plugin_data_from_name" name="method__get_plugin_data_from_name" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">_get_plugin_data_from_name()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_get_plugin_data_from_name(string  <span class="argument">$name</span>, string  <span class="argument">$data = &#039;slug&#039;</span>) : string|boolean</pre>
+                <p><em>Retrieve plugin data, given the plugin name.</em></p>
+                <p>Loops through the registered plugins looking for $name. If it finds it,
+it returns the $data from that plugin. Otherwise, returns false.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$name </td>
+                                <td><p>Name of the plugin, as it was registered.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$data </td>
+                                <td><p>Optional. Array key of plugin data to return. Default is slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>Plugin slug if found, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_download_url" name="method_get_download_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_download_url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_download_url(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Retrieve the download URL for a package.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Plugin download URL or path to local file or empty string if undetermined.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_info_link" name="method_get_info_link" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_info_link()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_info_link(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Retrieve a link to a plugin information page.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Fully formed html link to a plugin information page if available
+or the plugin name if not.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_tgmpa_url" name="method_get_tgmpa_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_tgmpa_url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_tgmpa_url() : string</pre>
+                <p><em>Retrieve the URL to the TGMPA Install page.</em></p>
+                <p>I.e. depending on the config settings passed something along the lines of:
+<a href="http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins">http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins</a></p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Properly encoded URL (not escaped).</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_tgmpa_status_url" name="method_get_tgmpa_status_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_tgmpa_status_url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_tgmpa_status_url(string  <span class="argument">$status</span>) : string</pre>
+                <p><em>Retrieve the URL to the TGMPA Install page for a specific plugin status (view).</em></p>
+                <p>I.e. depending on the config settings passed something along the lines of:
+<a href="http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins&plugin_status=install">http://example.com/wp-admin/themes.php?page=tgmpa-install-plugins&plugin_status=install</a></p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$status </td>
+                                <td><p>Plugin status - either 'install', 'update' or 'activate'.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Properly encoded URL (not escaped).</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_tgmpa_complete" name="method_is_tgmpa_complete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">is_tgmpa_complete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_tgmpa_complete() : boolean</pre>
+                <p><em>Determine whether there are open actions for plugins registered with TGMPA.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if complete, i.e. no outstanding actions. False otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_plugin_installed" name="method_is_plugin_installed" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">is_plugin_installed()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_plugin_installed(string  <span class="argument">$slug</span>) : boolean</pre>
+                <p><em>Check if a plugin is installed. Does not take must-use plugins into account.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if installed, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_plugin_active" name="method_is_plugin_active" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">is_plugin_active()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_plugin_active(string  <span class="argument">$slug</span>) : boolean</pre>
+                <p><em>Check if a plugin is active.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if active, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_can_plugin_update" name="method_can_plugin_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">can_plugin_update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">can_plugin_update(string  <span class="argument">$slug</span>) : boolean</pre>
+                <p><em>Check if a plugin can be updated, i.e. if we have information on the minimum WP version required
+available, check whether the current install meets them.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if OK to update, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_can_plugin_activate" name="method_can_plugin_activate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">can_plugin_activate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">can_plugin_activate(string  <span class="argument">$slug</span>) : boolean</pre>
+                <p><em>Check if a plugin can be activated, i.e. is not currently active and meets the minimum
+plugin version requirements set in TGMPA (if any).</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if OK to activate, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_installed_version" name="method_get_installed_version" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_installed_version()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_installed_version(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Retrieve the version number of an installed plugin.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Version number as string or an empty string if the plugin is not installed
+or version unknown (plugins which don't comply with the plugin header standard).</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_does_plugin_require_update" name="method_does_plugin_require_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">does_plugin_require_update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">does_plugin_require_update(string  <span class="argument">$slug</span>) : boolean</pre>
+                <p><em>Check whether a plugin complies with the minimum version requirements.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True when a plugin needs to be updated, otherwise false.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_does_plugin_have_update" name="method_does_plugin_have_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">does_plugin_have_update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">does_plugin_have_update(string  <span class="argument">$slug</span>) : false|string</pre>
+                <p><em>Check whether there is an update available for a plugin.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    false|string
+                                            &mdash; <p>Version number string of the available update or false if no update available.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_upgrade_notice" name="method_get_upgrade_notice" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_upgrade_notice()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_upgrade_notice(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Retrieve potential upgrade notice for a plugin.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The upgrade notice or an empty string if no message was available or provided.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_plugins" name="method_get_plugins" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_plugins()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_plugins(string  <span class="argument">$plugin_folder = &#039;&#039;</span>) : array</pre>
+                <p><em>Wrapper around the core WP get_plugins function, making sure it&#039;s actually available.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plugin_folder </td>
+                                <td><p>Optional. Relative path to single plugin folder.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Array of installed plugins with plugin information.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_update_dismiss" name="method_update_dismiss" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">update_dismiss()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">update_dismiss() </pre>
+                <p><em>Delete dismissable nag option when theme is switched.</em></p>
+                <p>This ensures that the user(s) is/are again reminded via nag of required
+and/or recommended plugins if they re-activate the theme.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.1                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_force_activation" name="method_force_activation" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">force_activation()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">force_activation() </pre>
+                <p><em>Forces plugin activation if the parameter &#039;force_activation&#039; is
+set to true.</em></p>
+                <p>This allows theme authors to specify certain plugins that must be
+active at all times while using the current theme.</p>
+<p>Please take special care when using this parameter as it has the
+potential to be harmful if not used correctly. Setting this parameter
+to true will not allow the specified plugin to be deactivated unless
+the user switches themes.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.2.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_force_deactivation" name="method_force_deactivation" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">force_deactivation()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">force_deactivation() </pre>
+                <p><em>Forces plugin deactivation if the parameter &#039;force_deactivation&#039;
+is set to true.</em></p>
+                <p>This allows theme authors to specify certain plugins that must be
+deactivated upon switching from the current theme to another.</p>
+<p>Please take special care when using this parameter as it has the
+potential to be harmful if not used correctly.</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.2.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_show_tgmpa_version" name="method_show_tgmpa_version" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">show_tgmpa_version()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">show_tgmpa_version() </pre>
+                <p><em>Echo the current TGMPA version number to the page.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_instance" name="method_get_instance" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">get_instance()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_instance() : object</pre>
+                <p><em>Returns the singleton instance of the class.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>The TGM_Plugin_Activation object.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.4.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_add_admin_menu" name="method_add_admin_menu" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">add_admin_menu()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">add_admin_menu(array  <span class="argument">$args</span>) </pre>
+                <p><em>Add the menu item.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$args </td>
+                                <td><p>Menu item configuration.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_do_plugin_install" name="method_do_plugin_install" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">do_plugin_install()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">do_plugin_install() : boolean</pre>
+                <p><em>Installs, updates or activates a plugin depending on the action link clicked by the user.</em></p>
+                <p>Checks the $_GET variable to see which actions have been
+passed and responds with the appropriate method.</p>
+<p>Uses WP_Filesystem to process and handle the plugin installation
+method.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True on success, false on failure.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                                            <dt>Uses</dt>
+                                                                <dd>WP_Filesystem</dd>
+                                            <dd>WP_Error</dd>
+                                            <dd>WP_Upgrader</dd>
+                                            <dd>Plugin_Upgrader</dd>
+                                            <dd>Plugin_Installer_Skin</dd>
+                                            <dd>Plugin_Upgrader_Skin</dd>
+                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            1.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_activate_single_plugin" name="method_activate_single_plugin" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">activate_single_plugin()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">activate_single_plugin(string  <span class="argument">$file_path</span>, string  <span class="argument">$slug</span>, boolean  <span class="argument">$automatic = false</span>) : boolean</pre>
+                <p><em>Activate a single plugin and send feedback about the result to the screen.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$file_path </td>
+                                <td><p>Path within wp-plugins/ to main plugin file.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$automatic </td>
+                                <td><p>Whether this is an automatic activation after an install. Defaults to false.
+This determines the styling of the output messages.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>False if an error was encountered, true otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_display_settings_errors" name="method_display_settings_errors" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">display_settings_errors()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">display_settings_errors() </pre>
+                <p><em>Display settings errors and remove those which have been displayed to avoid duplicate messages showing</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_plugin_source_type" name="method_get_plugin_source_type" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">get_plugin_source_type()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_plugin_source_type(string  <span class="argument">$source</span>) : string</pre>
+                <p><em>Determine what type of source the plugin comes from.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$source </td>
+                                <td><p>The source of the plugin as provided, either empty (= WP repo), a file path
+(= bundled) or an external URL.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>'repo', 'external', or 'bundled'</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__get_plugin_basename_from_slug" name="method__get_plugin_basename_from_slug" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_get_plugin_basename_from_slug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_get_plugin_basename_from_slug(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Helper function to extract the file path of the plugin file from the
+plugin slug, if the plugin is installed.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug (typically folder name) as provided by the developer.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Either file path for plugin if installed, or just the plugin slug.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.0.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_wp_repo_download_url" name="method_get_wp_repo_download_url" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">get_wp_repo_download_url()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_wp_repo_download_url(string  <span class="argument">$slug</span>) : string</pre>
+                <p><em>Retrieve the download URL for a WP repo package.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Plugin download URL.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_get_plugins_api" name="method_get_plugins_api" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">get_plugins_api()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">get_plugins_api(string  <span class="argument">$slug</span>) : object</pre>
+                <p><em>Try to grab information from WordPress API.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$slug </td>
+                                <td><p>Plugin slug.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>Plugins_api response object on success, WP_Error on failure.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.5.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_is_tgmpa_page" name="method_is_tgmpa_page" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">is_tgmpa_page()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">is_tgmpa_page() : boolean</pre>
+                <p><em>Determine if we&#039;re on the TGMPA Install page.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True when on the TGMPA page, false otherwise.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            since
+                        </th>
+                        <td>
+                                                            2.1.0                                
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">class-tgm-plugin-activation.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/includes/libraries/tgm-plugin-activation/class-tgm-plugin-activation.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on December 10th, 2015 at 17:21.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
