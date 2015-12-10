@@ -26,7 +26,7 @@ class SSI_API {
 	 * @since       1.0.0
 	 * @var         string $shipping The defined shipping method
 	 */
-	public $shipping = 'UPS Ground';
+	public $shipping = 'Priority Mail';
 
 
 	/**
