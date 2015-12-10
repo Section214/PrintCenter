@@ -149,6 +149,53 @@ function printcenter_contextual_help() {
 		) );
 	}
 
+	if( $screen->id == 'ssi_product' || $screen->id == 'edit-ssi_product' ) {
+		$screen->add_help_tab( array(
+			'id'      => 'printcenter-ssi-product-intro',
+			'title'   => __( 'Add/Edit SSI Product', 'printcenter' ),
+			'content' =>
+				'<p><strong>' . __( 'Introduction', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The Add/Edit SSI Product pages are where you define the SSI product details for each shirt type you want to support.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Product Name', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The product name field is for your reference only. It is the value displayed on the Add/Edit Product pages in the Shirt field.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'SSI SKU', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The SSI SKU field holds the actual SSI SKU for a given shirt. The <em>MUST</em> match their provided data exactly. If the SKU is all caps, it must be entered in all caps. It is sent to SSI during the processing phase and will result in an error if improperly entered.', 'printcenter' ) . '</p>'
+		) );
+	}
+
+	if( $screen->id == 'toplevel_page_printcenter-settings' ) {
+		$screen->add_help_tab( array(
+			'id'      => 'printcenter-general-settings',
+			'title'   => __( 'General Settings', 'printcenter' ),
+			'content' =>
+				'<p><strong>' . __( 'Introduction', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The General settings tab holds settings that don\'t belong anywhere else... Right now there isn\'t much here.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Site Type', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'Site Type specifies whether this is installed on a PrintCenter-powered storefront, or is acting as the Shipping Stats tracking site. There should only be one Stats site for the company.', 'printcenter' ) . '</p>'
+		) );
+
+		$screen->add_help_tab( array(
+			'id'      => 'printcenter-ssi-settings',
+			'title'   => __( 'SSI Settings', 'printcenter' ),
+			'content' =>
+				'<p><strong>' . __( 'Introduction', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The SSI settings tab holds settings that are relevant to integration with the SSI print API.', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Processing Mode', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The Processing Mode field defines how we will process purchases in regards to the print API. There are three possible modes:', 'printcenter' ) . '</p>' .
+				'<ul>' .
+				'<li>' . __( '<strong>Live:</strong> Live Processing will send <em>ALL</em> completed purchases to SSI', 'printcenter' ) . '</li>' .
+				'<li>' . __( '<strong>Test:</strong> Test Processing will create a purchase record on the SSI test API and return a dump of the results', 'printcenter' ) . '</li>' .
+				'<li>' . __( '<strong>Capture:</strong> Capture Processing will create a purchase record on the SSI test API that is stored for debugging purposes by the SSI staff', 'printcenter' ) . '</li>' .
+				'</ul>' .
+				'<p><strong>' . __( 'Live Customer ID', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The Live Customer ID field specifies the unique customer ID assigned to you by SSI', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Live Customer Zip Code', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The Live Customer Zip Code field specifies the zip code you provided to SSI for billing purposes', 'printcenter' ) . '</p>' .
+				'<p><strong>' . __( 'Test Customer ID/Zip Code', 'printcenter' ) . '</strong></p>' .
+				'<p>' . __( 'The test details are provided by SSI for you during testing of an integration. They are prepopulated, but may be changed at your convenience (or as SSI directs you to).', 'printcenter' ) . '</p>'
+		) );
+	}
+
 	// Allow extensions to modify contextual help
 	do_action( 'printcenter_contextual_help', $screen );
 }
