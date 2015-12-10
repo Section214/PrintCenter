@@ -8,11 +8,11 @@ Tested up to: 4.4
 Stable Tag: 1.0.0
 License: GNU Version 2 or Any Later Version
 
-Provides the server components for the Customer Print Center aspect of Grow Thrive Print
+Provides the server components for Customer Print Center.
 
 == Description ==
 
-Provides the server components for the Customer Print Center aspect of Grow Thrive Print
+Provides the server components for Customer Print Center.
 
 More information at [customerprintcenter.com](http://customerprintcenter.com/).
 
