@@ -1,7 +1,24 @@
 <?php
+/**
+ * SSI Test Suite
+ *
+ * @package     PrintCenter\SSITest
+ * @since       1.0.0
+ * @deprecated
+ */
+
+// Exit if accessed directly
+if( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 /**
  * Render the SSI Test page
+ *
+ * @since       1.0.0
+ * @return      void
+ * @deprecated
  */
 function printcenter_render_settings_page() {
     ?>
@@ -164,40 +181,47 @@ function printcenter_render_settings_page() {
 }
 
 
+/**
+ * Process SSI test data
+ *
+ * @since       1.0.0
+ * @return      void
+ * @deprecated
+ */
 function printcenter_run_ssi_test() {
     $array = array(
-        'DocType'           => 'Order',
-        'GarmentsProvided'  => 'No',
-        'CustID'            => $_POST['ssi_custid'],
-        'CustZip'           => $_POST['ssi_custzip'],
-        'PO'                => $_POST['ssi_po'],
-        'GarmentPOs'        => $_POST['ssi_garmentpos'],
-        'ShipTo'            => array(
-            'FirstName'         => $_POST['ssi_firstname'],
-            'LastName'          => $_POST['ssi_lastname'],
-            'Adrx1'             => $_POST['ssi_adrx1'],
-            'City'              => $_POST['ssi_city'],
-            'State'             => $_POST['ssi_state'],
-            'Zip'               => $_POST['ssi_zip'],
-            'Country'           => $_POST['ssi_country'],
-            'Email'             => $_POST['ssi_email'],
-            'Phone'             => $_POST['ssi_phone']
+        'DocType'            => 'Order',
+        'GarmentsProvided'   => 'No',
+        'CustID'             => $_POST['ssi_custid'],
+        'CustZip'            => $_POST['ssi_custzip'],
+        'PO'                 => $_POST['ssi_po'],
+        'GarmentPOs'         => $_POST['ssi_garmentpos'],
+        'ShipTo'             => array(
+            'FirstName'      => $_POST['ssi_firstname'],
+            'LastName'       => $_POST['ssi_lastname'],
+            'Adrx1'          => $_POST['ssi_adrx1'],
+            'City'           => $_POST['ssi_city'],
+            'State'          => $_POST['ssi_state'],
+            'Zip'            => $_POST['ssi_zip'],
+            'Country'        => $_POST['ssi_country'],
+            'Email'          => $_POST['ssi_email'],
+            'Phone'          => $_POST['ssi_phone']
         ),
-        'ShipMethod'        => $_POST['ssi_shipmethod'],
-        'ProductionPriority'=> 'Express',
-        'OrderNotes'        => 'Test purchase',
-        'Item'              => array(
-            'CustSKU'           => $_POST['ssi_custsku'],
-            'SKU'               => $_POST['ssi_sku'],
-            'Descrip'           => $_POST['ssi_descrip'],
-            'Color'             => $_POST['ssi_color'],
-            'DesignLocation'    => $_POST['ssi_designlocation'],
-            'DesignType'        => $_POST['ssi_designtype'],
-            'DesignArt'         => $_POST['ssi_designart'],
-            'DesignThumb'       => $_POST['ssi_designthumb'],
-            'DesignCategory'    => $_POST['ssi_designcategory'],
-            'Qty'               => $_POST['ssi_qty'],
-            'Size'              => $_POST['ssi_size']
+        'ShipMethod'         => $_POST['ssi_shipmethod'],
+        'ProductionPriority' => 'Express',
+        'OrderNotes'         => 'Test purchase',
+        'Item'               => array(
+            'CustSKU'        => $_POST['ssi_custsku'],
+            'SKU'            => $_POST['ssi_sku'],
+            'Descrip'        => $_POST['ssi_descrip'],
+            'Color'          => $_POST['ssi_color'],
+            'DesignLocation' => $_POST['ssi_designlocation'],
+            'DesignType'     => $_POST['ssi_designtype'],
+            'DesignArt'      => $_POST['ssi_designart'],
+            'DesignThumb'    => $_POST['ssi_designthumb'],
+            'DesignCategory' => $_POST['ssi_designcategory'],
+            'Qty'            => $_POST['ssi_qty'],
+            'Size'           => $_POST['ssi_size']
         )
     );
 
@@ -208,64 +232,78 @@ function printcenter_run_ssi_test() {
 add_action( 'printcenter_ssitest', 'printcenter_run_ssi_test' );
 
 
+/**
+ * Get an array of US states
+ *
+ * @since       1.0.0
+ * @return      array $state_list The array of states
+ * @deprecated
+ */
 function printcenter_get_states() {
     $state_list = array(
-        'AL'=>"Alabama",
-        'AK'=>"Alaska",  
-        'AZ'=>"Arizona",  
-        'AR'=>"Arkansas",  
-        'CA'=>"California",  
-        'CO'=>"Colorado",  
-        'CT'=>"Connecticut",  
-        'DE'=>"Delaware",  
-        'DC'=>"District Of Columbia",  
-        'FL'=>"Florida",  
-        'GA'=>"Georgia",  
-        'HI'=>"Hawaii",  
-        'ID'=>"Idaho",  
-        'IL'=>"Illinois",  
-        'IN'=>"Indiana",                                                                                                                                                                                                                                                          'IA'=>"Iowa",  
-        'KS'=>"Kansas",  
-        'KY'=>"Kentucky",  
-        'LA'=>"Louisiana",  
-        'ME'=>"Maine",  
-        'MD'=>"Maryland",  
-        'MA'=>"Massachusetts",  
-        'MI'=>"Michigan",  
-        'MN'=>"Minnesota",  
-        'MS'=>"Mississippi",  
-        'MO'=>"Missouri",  
-        'MT'=>"Montana",
-        'NE'=>"Nebraska",
-        'NV'=>"Nevada",
-        'NH'=>"New Hampshire",
-        'NJ'=>"New Jersey",
-        'NM'=>"New Mexico",
-        'NY'=>"New York",
-        'NC'=>"North Carolina",
-        'ND'=>"North Dakota",
-        'OH'=>"Ohio",  
-        'OK'=>"Oklahoma",  
-        'OR'=>"Oregon",  
-        'PA'=>"Pennsylvania",  
-        'RI'=>"Rhode Island",  
-        'SC'=>"South Carolina",  
-        'SD'=>"South Dakota",
-        'TN'=>"Tennessee",  
-        'TX'=>"Texas",  
-        'UT'=>"Utah",  
-        'VT'=>"Vermont",  
-        'VA'=>"Virginia",  
-        'WA'=>"Washington",  
-        'WV'=>"West Virginia",  
-        'WI'=>"Wisconsin",  
-        'WY'=>"Wyoming"
+        'AL' => "Alabama",
+        'AK' => "Alaska",
+        'AZ' => "Arizona",
+        'AR' => "Arkansas",
+        'CA' => "California",
+        'CO' => "Colorado",
+        'CT' => "Connecticut",
+        'DE' => "Delaware",
+        'DC' => "District Of Columbia",
+        'FL' => "Florida",
+        'GA' => "Georgia",
+        'HI' => "Hawaii",
+        'ID' => "Idaho",
+        'IL' => "Illinois",
+        'IN' => "Indiana",                                                                                                                                                                                                                                                          'IA'=>"Iowa",
+        'KS' => "Kansas",
+        'KY' => "Kentucky",
+        'LA' => "Louisiana",
+        'ME' => "Maine",
+        'MD' => "Maryland",
+        'MA' => "Massachusetts",
+        'MI' => "Michigan",
+        'MN' => "Minnesota",
+        'MS' => "Mississippi",
+        'MO' => "Missouri",
+        'MT' => "Montana",
+        'NE' => "Nebraska",
+        'NV' => "Nevada",
+        'NH' => "New Hampshire",
+        'NJ' => "New Jersey",
+        'NM' => "New Mexico",
+        'NY' => "New York",
+        'NC' => "North Carolina",
+        'ND' => "North Dakota",
+        'OH' => "Ohio",
+        'OK' => "Oklahoma",
+        'OR' => "Oregon",
+        'PA' => "Pennsylvania",
+        'RI' => "Rhode Island",
+        'SC' => "South Carolina",
+        'SD' => "South Dakota",
+        'TN' => "Tennessee",
+        'TX' => "Texas",
+        'UT' => "Utah",
+        'VT' => "Vermont",
+        'VA' => "Virginia",
+        'WA' => "Washington",
+        'WV' => "West Virginia",
+        'WI' => "Wisconsin",
+        'WY' => "Wyoming"
     );
 
     return $state_list;
 }
 
 
+/**
+ * Get an array of countries
+ *
+ * @since       1.0.0
+ * @return      array $countries The array of countries
+ * @deprecated
+ */
 function printcenter_get_countries() {
 	$countries = array(
 		'US' => 'United States',
@@ -525,30 +563,38 @@ function printcenter_get_countries() {
     return $countries;
 }
 
+
+/**
+ * Get an array of SSI shipping methods
+ *
+ * @since       1.0.0
+ * @return      array $methods The available shipping methods
+ * @deprecated
+ */
 function printcenter_get_shipping_methods() {
     $methods = array(
-        'UPS Ground'        => 'UPS Ground',
-        'UPSMIUS'           => 'UPS MIUS',
-        'UPSMIINT'          => 'UPSMIINT',
-        'Next Day 8:30'     => 'UPS Next Day 8:30',
-        'Next Day 10:30'    => 'UPS Next Day 10:30',
-        'Next Day 3:00'     => 'UPS Next Day 3:00',
-        '2 Day Air'         => 'UPS 2 Day Air',
-        '2 Day Air 12:00'   => 'UPS 2 Day Air 12:00',
-        '3 Day Select'      => 'UPS 3 Day Select',
-        'Next Day Air Saturday 9:30'    => 'UPS Next Day Air Saturday 9:30',
-        'Next Day Air Saturday Noon'    => 'UPS Next Day Air Saturday Noon',
-        'US Mail'           => 'US Mail',
-        'US Priority Mail'  => 'US Priority Mail',
-        'First Class Mail'  => 'First Class Mail',
-        'Priority Mail'     => 'Priority Mail',
-        'Express Mail'      => 'Express Mail',
-        'First Class International'     => 'First Class International',
-        'Priority Mail International'   => 'Priority Mail International',
-        'Express Mail International'    => 'Express Mail International',
-        'Fedex Ground'      => 'Fedex Ground',
-        'Fedex Overnight'   => 'Fedex Overnight',
-        'AMS'               => 'AMS'
+        'UPS Ground'                  => 'UPS Ground',
+        'UPSMIUS'                     => 'UPS MIUS',
+        'UPSMIINT'                    => 'UPSMIINT',
+        'Next Day 8:30'               => 'UPS Next Day 8:30',
+        'Next Day 10:30'              => 'UPS Next Day 10:30',
+        'Next Day 3:00'               => 'UPS Next Day 3:00',
+        '2 Day Air'                   => 'UPS 2 Day Air',
+        '2 Day Air 12:00'             => 'UPS 2 Day Air 12:00',
+        '3 Day Select'                => 'UPS 3 Day Select',
+        'Next Day Air Saturday 9:30'  => 'UPS Next Day Air Saturday 9:30',
+        'Next Day Air Saturday Noon'  => 'UPS Next Day Air Saturday Noon',
+        'US Mail'                     => 'US Mail',
+        'US Priority Mail'            => 'US Priority Mail',
+        'First Class Mail'            => 'First Class Mail',
+        'Priority Mail'               => 'Priority Mail',
+        'Express Mail'                => 'Express Mail',
+        'First Class International'   => 'First Class International',
+        'Priority Mail International' => 'Priority Mail International',
+        'Express Mail International'  => 'Express Mail International',
+        'Fedex Ground'                => 'Fedex Ground',
+        'Fedex Overnight'             => 'Fedex Overnight',
+        'AMS'                         => 'AMS'
     );
 
     return $methods;
