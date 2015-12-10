@@ -41,7 +41,7 @@ function printcenter_contextual_help() {
 	$screen->set_help_sidebar(
 		'<p><strong>' . __( 'For more information:', 'printcenter' ) . '</strong></p>' .
 		'<p>' . sprintf( __( '<a href="%s" target="_blank">Github Project</a>', 'printcenter' ), esc_url( 'https://github.com/section214/printcenter' ) ) . '</p>' .
-		'<p>' . sprintf( __( '<a href="%s" target="_blank">Developer Docs</a>', 'printcenter' ), esc_url( 'http://developer.customerprintcenter.com' ) ) . '</p>' .
+		'<p>' . sprintf( __( '<a href="%s" target="_blank">Developer Docs</a>', 'printcenter' ), PRINTCENTER_URL . '/codex' ) . '</p>' .
 		'<p>' . sprintf( __( '<a href="%s" target="_blank">Contact Support</a>', 'printcenter' ), esc_url( 'mailto:support@section214.com' ) ) . '</p>' .
 		'<hr />' .
 		'<p><a href="https://github.com/section214/printcenter" target="_blank"><img src="https://img.shields.io/github/release/section214/printcenter.svg" /></a></p>' .
