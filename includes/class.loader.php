@@ -259,6 +259,11 @@ class PrintCenter_Loader {
 					'name'     => __( 'WooCommerce', 'printcenter' ),
 					'slug'     => 'woocommerce',
 					'required' => true
+				),
+				array(
+					'name'     => 'Weight Based Shipping for Woocommerce',
+					'slug'     => 'weight-based-shipping-for-woocommerce',
+					'required' => true
 				)
 			);
 		} else {
