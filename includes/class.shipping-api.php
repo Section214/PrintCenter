@@ -43,6 +43,7 @@ class Shipping_API {
 	public function hooks() {
 		add_action( 'rest_api_init', array( $this, 'api_init' ) );
 		add_action( 'woocommerce_admin_order_data_after_shipping_address', array( $this, 'display_order_data' ) );
+		add_filter( 'woocommerce_email_classes', array( $this, 'add_shipped_email' ) );
 	}
 
 
@@ -109,8 +110,17 @@ class Shipping_API {
 					update_post_meta( $order_id, '_ssi_tracking_numbers', $tracking_numbers );
 					update_post_meta( $order_id, '_ssi_shipper', $xmldata['shipment']['@attributes']['shipper'] );
 				}
+
+				//do_action( 'printcenter_send_shipping_email', $order_id );
+				require_once WP_PLUGIN_DIR . '/woocommerce/includes/libraries/class-emogrifier.php';
+				require_once WP_PLUGIN_DIR . '/woocommerce/includes/emails/class-wc-email.php';
+				require_once PRINTCENTER_DIR . 'includes/class.wc-order-shipped-email.php';
+				$mail = new WC_Order_Shipped_Email();
+				$mail->trigger( $order_id );
+
+				return true;
 			}
-			return true;
+			return false;
 		} else {
 			return false;
 		}
@@ -156,5 +166,22 @@ class Shipping_API {
 		$html .= '</div>';
 
 		echo $html;
+	}
+
+
+	/**
+	 * Adds an email for product shipping notifications
+	 *
+	 * @access      public
+	 * @since       1.0.0
+	 * @param       array $email_classes Available email classes
+	 * @return      array Filtered available email classes
+	 */
+	public function add_shipped_email( $email_classes ) {
+		require_once PRINTCENTER_DIR . 'includes/class.wc-order-shipped-email.php';
+
+		$email_classes['WC_Order_Shipped_Email'] = new WC_Order_Shipped_Email();
+
+		return $email_classes;
 	}
 }
