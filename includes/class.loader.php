@@ -91,7 +91,7 @@ class PrintCenter_Loader {
 
 		// Plugin version
 		if( ! defined( 'PRINTCENTER_VER' ) ) {
-			define( 'PRINTCENTER_VER', '0.0.1' );
+			define( 'PRINTCENTER_VER', '1.0.0' );
 		}
 
 		// Plugin path

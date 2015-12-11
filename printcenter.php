@@ -3,7 +3,7 @@
  * Plugin Name:     PrintCenter
  * Plugin URI:      http://customerprintcenter.com
  * Description:     Provides the server components for the Customer Print Center aspect of Grow Thrive Print
- * Version:         0.0.1
+ * Version:         1.0.0
  * Author:          Daniel J Griffiths
  * Author URI:      http://section214.com
  * Text Domain:     printcenter
