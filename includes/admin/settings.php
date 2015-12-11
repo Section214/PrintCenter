@@ -37,7 +37,7 @@ add_filter( 'printcenter_menu', 'printcenter_menu' );
  */
 function printcenter_settings_tabs( $tabs ) {
 	$tabs['ssi']   = __( 'SSI', 'printcenter' );
-	$tabs['email'] = __( 'Email', 'printcenter' );
+	//$tabs['email'] = __( 'Email', 'printcenter' );
 
 	return $tabs;
 }
@@ -99,14 +99,6 @@ function printcenter_settings( $settings ) {
 				'type' => 'text',
 				'std'  => '99999'
 			)
-		) ),
-		'email' => apply_filters( 'printcenter_email_settings', array(
-			array(
-				'id'   => 'email_header',
-				'name' => __( 'Email Settings', 'printcenter' ),
-				'desc' => '',
-				'type' => 'header'
-			),
 		) )
 	);
 
