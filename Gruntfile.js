@@ -100,11 +100,11 @@ grunt.initConfig({
 					poDel: true
 				},
 				files: [{
-				 expand: true,
-				 cwd: '<%= dirs.lang %>',
+				expand: true,
+				cwd: '<%= dirs.lang %>',
 				src: ['*.po'],
 				dest: '<%= dirs.lang %>',
-				 ext: '.mo',
+				ext: '.mo',
 				nonull: true
 			}]
 		}
@@ -152,6 +152,19 @@ grunt.initConfig({
 			}
 		},
 
+		glotpress_download: {
+			core: {
+				options: {
+					domainPath: 'languages',
+					url: 'https://translate.wordpress.org',
+					slug: 'wp-plugins/printcenter/stable',
+					textdomain: 'printcenter',
+					filter: {
+						minimum_percentage: 1,
+					}
+				}
+			},
+		},
 });
 
 // Default task. - grunt makepot
