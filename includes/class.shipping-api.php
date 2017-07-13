@@ -141,6 +141,9 @@ class Shipping_API {
 		$shipping_date    = get_post_meta( $order->id, '_ssi_ship_date', true );
 		$tracking_numbers = get_post_meta( $order->id, '_ssi_tracking_numbers' );
 
+		// Mark order as completed
+		$order->update_status('completed');
+
 		$html  = '<h4>' . __( 'Shipping Status', 'printcenter' ) . '</h4>';
 		$html .= '<div class="shipping-status">';
 		$html .= '<p>';
