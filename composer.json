@@ -1,12 +1,13 @@
 {
     "name": "Section214/PrintCenter",
-    "type": "project",
-    "description": "Provides the server components for the Customer Print Center aspect of Grow Thrive Print",
+    "type": "wordpress-plugin",
+    "description": "Integration server for WordPress and SSI",
     "keywords": ["printcenter"],
     "homepage": "https://section214.com/",
     "license": "GPL-2.0+",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "composer/installers": "~1.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "dev-master",
