@@ -10,6 +10,8 @@ $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
 $_SERVER['SERVER_NAME'] = '';
 $PHP_SELF = $GLOBALS['PHP_SELF'] = $_SERVER['PHP_SELF'] = '/index.php';
 
+define( 'WP_USE_THEMES', false );
+
 $_tests_dir = getenv('WP_TESTS_DIR');
 if ( !$_tests_dir ) $_tests_dir = '/tmp/wordpress-tests-lib';
 
@@ -38,3 +40,9 @@ $printcenter_options = get_option( 'printcenter_settings' );
 
 $current_user = new WP_User(1);
 $current_user->set_role('administrator');
+wp_update_user( array( 'ID' => 1, 'first_name' => 'Admin', 'last_name' => 'User' ) );
+
+function _disable_reqs( $status = false, $args = array(), $url = '') {
+	return new WP_Error( 'no_reqs_in_unit_tests', __( 'HTTP Requests disbaled for unit tests', 'edd' ) );
+}
+add_filter( 'pre_http_request', '_disable_reqs' );
