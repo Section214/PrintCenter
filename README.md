@@ -1,5 +1,5 @@
 # [PrintCenter](http://customerprintcenter.com)
-[![Build Status](https://secure.travis-ci.org/Section214/PrintCenter.png?branch=master)](https://travis-ci.org/Section214/PrintCenter) [![Code Coverage](https://scrutinizer-ci.com/g/Section214/PrintCenter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Section214/PrintCenter/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Section214/PrintCenter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Section214/PrintCenter/?branch=master) [![Latest Release](https://img.shields.io/github/release/Section214/PrintCenter.svg)](https://github.com/Section214/PrintCenter/releases)
+[![Build Status](https://secure.travis-ci.org/Section214/PrintCenter.png?branch=master)](https://travis-ci.org/Section214/PrintCenter) [![Code Coverage](https://scrutinizer-ci.com/g/Section214/PrintCenter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Section214/PrintCenter/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Section214/PrintCenter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Section214/PrintCenter/?branch=master)
 
 ### Welcome to our GitHub Repository
 
