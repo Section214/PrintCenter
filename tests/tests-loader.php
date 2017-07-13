@@ -70,6 +70,7 @@ class Tests_Loader extends WP_UnitTestCase {
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/admin.css' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/admin.min.css' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/css/font.css' );
+		$this->assertFileExists( PRINTCENTER_DIR . 'assets/css/font.min.css' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-1.png' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-2.png' );
         $this->assertFileExists( PRINTCENTER_DIR . 'assets/img/help/product-help-3.png' );
