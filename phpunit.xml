@@ -19,7 +19,7 @@
 				<directory>./includes/libraries/</directory>
 			</exclude>
 		</whitelist>
-	<filters>
+	</filter>
 	<listeners>
 		<listener class="SpeedTrapListener" file="tests/phpunit/speed-trap-listener.php">
 			<arguments>
