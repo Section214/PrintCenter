@@ -54,9 +54,9 @@ class SSI_API {
 	 * @return      void
 	 */
 	public function disable_woocommerce_checkout_scripts() {
-		//if( printcenter()->loader->settings->get_option( 'ssi_mode', 'live' ) == 'test' ) {
+		if( printcenter()->loader->settings->get_option( 'ssi_mode', 'live' ) == 'test' ) {
 			wp_dequeue_script( 'wc-checkout' );
-		//}
+		}
 	}
 
 
@@ -120,21 +120,11 @@ class SSI_API {
 			'ProductionPriority' => 'Normal',
 		);
 
+		$i = 0;
 		foreach( $the_order->get_items() as $item ) {
 			$product   = $the_order->get_product_from_item( $item );
 			$item_meta = new WC_Order_Item_Meta( $item, $product );
 			$item_meta = $item_meta->get_formatted();
-
-			foreach( $item_meta as $item_id => $meta ) {
-				switch( $meta['key'] ) {
-					case 'pa_size' :
-						$size = $meta['value'];
-						break;
-					case 'pa_color' :
-						$color = $meta['value'];
-						break;
-				}
-			}
 
 			$sku      = get_post_meta( $item['product_id'] , '_ssi_sku', true );
 			$location = get_post_meta( $item['product_id'] , '_ssi_location', true );
@@ -151,37 +141,47 @@ class SSI_API {
 				$location = 'Left Chest';
 			}
 
-			$ssi_order['Item'][] = array(
+			$product_variable = new WC_Product_Variable( $item['product_id'] );
+			$variations       = $product_variable->get_available_variations();
+
+			foreach ( $variations as $variation_id => $variation ) {
+				if( $item['variation_id'] == $variation['id'] ) {
+					$thumb = $variation['image']['url'];
+				}
+			}
+
+			$ssi_order['Item'][$i] = array(
 				'SKU'            => $sku,
-				'Color'          => ( isset( $color ) ? $color : false ),
-				'Size'           => ( isset( $size ) ? $size : false ),
+				'Color'          => $item['color'],
+				'Size'           => $item['size'],
 				'Qty'            => $item['qty'],
 				'DesignLocation' => $location,
-				'DesignType'     => 1,
+				'DesignType'     => 3,
 				'DesignArt'      => ( isset( $art ) ? $art : false ),
 				'DesignThumb'    => $thumb,
 				'DesignCategory' => $sizing
 			);
 
-			$xml = Array2XML::createXML( 'Request', $ssi_order );
-			$xml = $xml->saveXML();
+			$i++;
+		}
 
-			$content = array(
-				'headers' => array(
-					'content-type' => 'text/xml'
-				),
-				'body' => $xml
-			);
+		$xml = Array2XML::createXML( 'Request', $ssi_order );
+		$xml = $xml->saveXML();
 
-			$response = wp_remote_post( $endpoint, $content );
-			var_dump( $response ); exit;
+		$content = array(
+			'headers' => array(
+				'content-type' => 'text/xml'
+			),
+			'body' => $xml
+		);
 
-			if( $ssi_mode == 'test' ) {
-				$response = wp_remote_retrieve_body( $response );
+		$response = wp_remote_post( $endpoint, $content );
 
-				echo '<pre>' . printcenter_prettify_xml( $response, true ) . '</pre>';
-				exit;
-			}
+		if( $ssi_mode == 'test' ) {
+			$response = wp_remote_retrieve_body( $response );
+
+			echo '<pre>' . printcenter_prettify_xml( $response, true ) . '</pre>';
+			exit;
 		}
 	}
 }
